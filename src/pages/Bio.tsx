@@ -1,0 +1,115 @@
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Zap, Building, Rocket } from "lucide-react";
+import { Card } from "@/components/ui/card";
+
+const iconMap: Record<string, any> = {
+  Zap,
+  Building,
+  Rocket,
+};
+
+export default function Bio() {
+  const { data: bioData, isLoading } = useQuery({
+    queryKey: ["bio-content"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("bio_content")
+        .select("*")
+        .single();
+      
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-pulse text-muted-foreground">A carregar...</div>
+      </div>
+    );
+  }
+
+  const timeline = bioData?.timeline as Array<{
+    year: string;
+    title: string;
+    description: string;
+    icon: string;
+  }> || [];
+
+  return (
+    <div className="py-24 px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">Quem sou</h1>
+          <div className="w-20 h-1 bg-primary mx-auto mb-12" />
+        </div>
+
+        {/* Intro Text */}
+        <div className="prose prose-lg prose-invert max-w-none mb-20">
+          <p className="text-lg leading-relaxed text-foreground/90">
+            {bioData?.intro_text}
+          </p>
+        </div>
+
+        {/* Timeline */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold mb-12 text-center">Percurso</h2>
+          
+          <div className="space-y-8">
+            {timeline.map((item, index) => {
+              const Icon = iconMap[item.icon] || Zap;
+              
+              return (
+                <Card key={index} className="p-8 hover-lift">
+                  <div className="flex items-start gap-6">
+                    <div className="flex-shrink-0">
+                      <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center">
+                        <Icon className="h-8 w-8 text-primary" />
+                      </div>
+                    </div>
+                    
+                    <div className="flex-1">
+                      <div className="text-sm font-bold text-primary mb-2">{item.year}</div>
+                      <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground">{item.description}</p>
+                    </div>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Bio Image Placeholder */}
+        {bioData?.bio_image_url && (
+          <div className="mb-20 rounded-2xl overflow-hidden">
+            <img 
+              src={bioData.bio_image_url} 
+              alt="Rafael Constantino Bugia" 
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        )}
+
+        {/* CTA */}
+        <div className="text-center">
+          <h3 className="text-2xl font-bold mb-6">Vamos trabalhar juntos?</h3>
+          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Descubra os projectos que estou a desenvolver e como posso ajudar o seu negócio.
+          </p>
+          <Button asChild size="lg">
+            <Link to="/projectos">
+              Ver projectos
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
