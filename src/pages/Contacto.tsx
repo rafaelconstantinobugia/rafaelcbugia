@@ -7,6 +7,19 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Mail, Send } from "lucide-react";
 import { toast } from "sonner";
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { analytics } from "@/lib/analytics";
+import { SEO } from "@/components/SEO";
+import { Link } from "react-router-dom";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(2, "Nome deve ter pelo menos 2 caracteres").max(100, "Nome muito longo"),
+  email: z.string().trim().email("Email inválido").max(255, "Email muito longo"),
+  subject: z.string().trim().min(5, "Assunto deve ter pelo menos 5 caracteres").max(200, "Assunto muito longo"),
+  message: z.string().trim().min(10, "Mensagem deve ter pelo menos 10 caracteres").max(2000, "Mensagem muito longa"),
+  gdprConsent: z.boolean().refine(val => val === true, "Deve aceitar a política de privacidade")
+});
 
 export default function Contacto() {
   const [formData, setFormData] = useState({
@@ -21,16 +34,38 @@ export default function Contacto() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.gdprConsent) {
-      toast.error("Por favor, aceite a política de privacidade para continuar.");
+    // Validate form data
+    const validation = contactSchema.safeParse(formData);
+    
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast.error(firstError.message);
       return;
     }
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Save to database
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name.trim(),
+          email: formData.email.trim().toLowerCase(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
+          gdpr_consent_timestamp: new Date().toISOString(),
+          ip_address: null, // Could be collected via edge function
+        });
+
+      if (error) throw error;
+
+      // Track event
+      analytics.contactFormSubmitted();
+
       toast.success("Mensagem enviada com sucesso! Entrarei em contacto em breve.");
+      
+      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -38,12 +73,23 @@ export default function Contacto() {
         message: "",
         gdprConsent: false,
       });
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast.error("Erro ao enviar mensagem. Tente novamente ou use o email directo.");
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (
-    <div className="py-24 px-6 lg:px-8">
+    <>
+      <SEO
+        title="Contacto — Rafael Constantino Bugia"
+        description="Entre em contacto para discutir o seu projecto. Respondo normalmente em 24 horas."
+        canonical="https://rafaelcbugia.com/contacto"
+        ogImage="https://rafaelcbugia.com/opengraph/contacto.png"
+      />
+      <div className="py-24 px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="text-center mb-20">
@@ -121,7 +167,11 @@ export default function Contacto() {
               />
               <Label htmlFor="gdpr" className="text-sm leading-relaxed cursor-pointer">
                 Concordo que os meus dados sejam utilizados para responder ao meu pedido, 
-                de acordo com a política de privacidade. *
+                de acordo com a{" "}
+                <Link to="/politica-privacidade" className="text-primary hover:underline">
+                  política de privacidade
+                </Link>
+                . Posso exercer os meus direitos (acesso, retificação, eliminação) a qualquer momento. *
               </Label>
             </div>
 
@@ -150,5 +200,6 @@ export default function Contacto() {
         </div>
       </div>
     </div>
+    </>
   );
 }

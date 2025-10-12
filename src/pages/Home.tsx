@@ -2,6 +2,9 @@ import { ArrowRight, Zap, Users, Target } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { NewsletterForm } from "@/components/NewsletterForm";
+import { SEO } from "@/components/SEO";
+import { analytics } from "@/lib/analytics";
 import heroImage from "@/assets/hero-abstract.jpg";
 
 const services = [
@@ -29,15 +32,22 @@ const services = [
 ];
 
 const proofPoints = [
-  "10+ anos de experiência em operações e tecnologia",
-  "Foco em negócios locais e PMEs ambiciosas",
-  "Abordagem prática: implementação rápida, resultados reais",
-  "Especialização em hospitalidade e serviços",
+  "Execução prática com ferramentas acessíveis",
+  "Sistemas duplicáveis e mensuráveis",
+  "Conteúdo público regular (Reels / Carrosséis)",
 ];
 
 export default function Home() {
   return (
-    <div className="relative">
+    <>
+      <SEO
+        title="Rafael Constantino Bugia — Empreendedor e Estratega Digital"
+        description="Construo sistemas digitais simples que funcionam no mundo real. Empreendedor na Costa de Prata. Método SPRINT, Silver Coast Sitters, Celinda's Eco Retreat."
+        canonical="https://rafaelcbugia.com"
+        ogImage="https://rafaelcbugia.com/opengraph/home.png"
+      />
+      
+      <div className="relative">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Background Image with Overlay */}
@@ -66,13 +76,24 @@ export default function Home() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button asChild size="lg" className="min-w-[200px]">
+            <Button 
+              asChild 
+              size="lg" 
+              className="min-w-[200px]"
+              onClick={() => analytics.ctaHomeProjectosClick()}
+            >
               <Link to="/projectos">
                 Ver projectos
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="min-w-[200px]">
+            <Button 
+              asChild 
+              variant="outline" 
+              size="lg" 
+              className="min-w-[200px]"
+              onClick={() => analytics.ctaHomeContactoClick()}
+            >
               <Link to="/contacto">
                 Contacto
               </Link>
@@ -131,7 +152,11 @@ export default function Home() {
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Veja o Kit Digital — uma oferta completa para negócios que querem crescer com tecnologia prática.
           </p>
-          <Button asChild size="lg">
+          <Button 
+            asChild 
+            size="lg"
+            onClick={() => analytics.kitDigitalCtaClick()}
+          >
             <Link to="/kitdigital">
               Conhecer o Kit Digital
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -148,19 +173,10 @@ export default function Home() {
             Receba insights sobre tecnologia, operações e estratégia digital. Sem spam, apenas conteúdo útil.
           </p>
           
-          <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="O seu email"
-              className="flex-1 px-4 py-3 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-              required
-            />
-            <Button type="submit" size="lg">
-              Subscrever
-            </Button>
-          </form>
+          <NewsletterForm />
         </div>
       </section>
     </div>
+    </>
   );
 }

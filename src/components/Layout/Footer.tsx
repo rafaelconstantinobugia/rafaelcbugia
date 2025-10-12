@@ -1,4 +1,4 @@
-import { Mail, Twitter, Linkedin, Cookie } from "lucide-react";
+import { Mail, Twitter, Linkedin, Instagram, Youtube, Cookie } from "lucide-react";
 import { reopenCookieBanner } from "@/components/CookieBanner";
 
 export const Footer = () => {
@@ -62,16 +62,16 @@ export const Footer = () => {
           {/* Social Links */}
           <div className="flex items-center gap-4">
             <a 
-              href="https://twitter.com/rafaelcbugia" 
+              href="https://www.instagram.com/rafaelcbugia" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="Twitter"
+              aria-label="Instagram"
             >
-              <Twitter className="h-5 w-5" />
+              <Instagram className="h-5 w-5" />
             </a>
             <a 
-              href="https://linkedin.com/in/rafaelcbugia" 
+              href="https://www.linkedin.com/in/rafaelcbugia" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -79,12 +79,33 @@ export const Footer = () => {
             >
               <Linkedin className="h-5 w-5" />
             </a>
+            <a 
+              href="https://x.com/rafaelcbugia" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors"
+              aria-label="X (Twitter)"
+            >
+              <Twitter className="h-5 w-5" />
+            </a>
+            <a 
+              href="https://www.youtube.com/@rafaelcbugia" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors"
+              aria-label="YouTube"
+            >
+              <Youtube className="h-5 w-5" />
+            </a>
           </div>
         </div>
 
-        {/* Handle */}
-        <div className="mt-6 text-center text-xs text-muted-foreground">
-          @rafaelcbugia
+        {/* Handle & Domain Note */}
+        <div className="mt-6 text-center text-xs text-muted-foreground space-y-1">
+          <div>@rafaelcbugia</div>
+          <div className="text-muted-foreground/60">
+            Este site substitui rafaelconstantinobugia.pt
+          </div>
         </div>
       </div>
     </footer>

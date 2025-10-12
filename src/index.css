@@ -21,6 +21,9 @@ All colors MUST be HSL.
     /* Orange lava primary */
     --primary: 24 100% 50%;    /* #FF6A00 */
     --primary-foreground: 0 0% 96%;
+    
+    /* Accessible orange for small text */
+    --primary-accessible: 24 100% 55%;  /* #FF7B1A */
 
     /* Subtle orange highlight */
     --secondary: 24 100% 75%;  /* #FFB380 */
@@ -36,7 +39,7 @@ All colors MUST be HSL.
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 96%;
 
-    --border: 0 0% 15%;
+    --border: 0 0% 15%;        /* #262626 for OLED definition */
     --input: 0 0% 15%;
     --ring: 24 100% 50%;
 
