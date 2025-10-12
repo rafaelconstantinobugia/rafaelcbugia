@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { SEO } from "@/components/SEO";
 import { ArrowRight, Zap, Building, Rocket } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
@@ -41,7 +42,14 @@ export default function Bio() {
   }> || [];
 
   return (
-    <div className="py-24 px-6 lg:px-8">
+    <>
+      <SEO
+        title="Biografia — Rafael Constantino Bugia"
+        description="Sou o Rafael Constantino Bugia. Trabalho na intersecção entre hospitalidade, operações e tecnologia. Crio sistemas digitais práticos para negócios ambiciosos."
+        canonical="https://rafaelcbugia.com/bio"
+        ogImage="https://rafaelcbugia.com/opengraph/bio.png"
+      />
+      <div className="py-24 px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="text-center mb-20">
@@ -111,5 +119,6 @@ export default function Bio() {
         </div>
       </div>
     </div>
+    </>
   );
 }

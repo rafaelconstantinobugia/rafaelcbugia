@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
+import { SEO } from "@/components/SEO";
 import { ExternalLink } from "lucide-react";
 
 export default function Projectos() {
@@ -41,7 +42,14 @@ export default function Projectos() {
   }
 
   return (
-    <div className="py-24 px-6 lg:px-8">
+    <>
+      <SEO
+        title="Projectos — Método SPRINT, Silver Coast Sitters, Celinda's"
+        description="Descubra os projectos que estou a desenvolver: Método SPRINT, Silver Coast Sitters, Celinda's Eco Retreat, 1VAU e mais."
+        canonical="https://rafaelcbugia.com/projectos"
+        ogImage="https://rafaelcbugia.com/opengraph/projectos.png"
+      />
+      <div className="py-24 px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-20">
@@ -104,5 +112,6 @@ export default function Projectos() {
         </div>
       </div>
     </div>
+    </>
   );
 }

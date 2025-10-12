@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { SEO } from "@/components/SEO";
+import { analytics } from "@/lib/analytics";
 import { ExternalLink, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
@@ -30,7 +32,14 @@ export default function Media() {
   }
 
   return (
-    <div className="py-24 px-6 lg:px-8">
+    <>
+      <SEO
+        title="Media e Imprensa — Rafael Constantino Bugia"
+        description="Artigos, entrevistas e menções na imprensa sobre Rafael Constantino Bugia e os seus projectos."
+        canonical="https://rafaelcbugia.com/media"
+        ogImage="https://rafaelcbugia.com/opengraph/media.png"
+      />
+      <div className="py-24 px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-20">
@@ -113,7 +122,11 @@ export default function Media() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="outline" size="lg">
+              <Button 
+                variant="outline" 
+                size="lg"
+                onClick={() => analytics.pressKitDownload()}
+              >
                 <Download className="mr-2 h-4 w-4" />
                 Download Bio + Foto
               </Button>
@@ -127,5 +140,6 @@ export default function Media() {
         </div>
       </div>
     </div>
+    </>
   );
 }
