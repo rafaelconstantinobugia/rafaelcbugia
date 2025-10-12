@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
+import BioManager from "@/components/Admin/BioManager";
+import ProjectsManager from "@/components/Admin/ProjectsManager";
+import MediaManager from "@/components/Admin/MediaManager";
+import TestimonialsManager from "@/components/Admin/TestimonialsManager";
+import SettingsManager from "@/components/Admin/SettingsManager";
 
 export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
@@ -49,7 +54,7 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-background">
         <p className="text-muted-foreground">A carregar...</p>
       </div>
     );
@@ -60,56 +65,46 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Dashboard Admin</h1>
+    <div className="min-h-screen bg-background">
+      <header className="border-b bg-card">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">Dashboard Admin</h1>
           <Button onClick={handleLogout} variant="outline">
             Sair
           </Button>
         </div>
+      </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Bio</h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              Editar conteúdo da página de biografia
-            </p>
-            <Button className="w-full">Editar Bio</Button>
-          </Card>
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        <Tabs defaultValue="bio" className="w-full">
+          <TabsList className="grid w-full grid-cols-5">
+            <TabsTrigger value="bio">Bio</TabsTrigger>
+            <TabsTrigger value="projectos">Projectos</TabsTrigger>
+            <TabsTrigger value="media">Media</TabsTrigger>
+            <TabsTrigger value="testemunhos">Testemunhos</TabsTrigger>
+            <TabsTrigger value="definicoes">Definições</TabsTrigger>
+          </TabsList>
 
-          <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Projectos</h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              Gerir projectos e portfolio
-            </p>
-            <Button className="w-full">Gerir Projectos</Button>
-          </Card>
+          <TabsContent value="bio" className="mt-6">
+            <BioManager />
+          </TabsContent>
 
-          <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Media</h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              Adicionar e editar artigos de media
-            </p>
-            <Button className="w-full">Gerir Media</Button>
-          </Card>
+          <TabsContent value="projectos" className="mt-6">
+            <ProjectsManager />
+          </TabsContent>
 
-          <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Testemunhos</h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              Gerir testemunhos de clientes
-            </p>
-            <Button className="w-full">Gerir Testemunhos</Button>
-          </Card>
+          <TabsContent value="media" className="mt-6">
+            <MediaManager />
+          </TabsContent>
 
-          <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Definições</h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              Configurações gerais do site
-            </p>
-            <Button className="w-full">Definições</Button>
-          </Card>
-        </div>
+          <TabsContent value="testemunhos" className="mt-6">
+            <TestimonialsManager />
+          </TabsContent>
+
+          <TabsContent value="definicoes" className="mt-6">
+            <SettingsManager />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
