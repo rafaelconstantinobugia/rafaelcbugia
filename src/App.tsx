@@ -11,6 +11,8 @@ import Media from "./pages/Media";
 import Contacto from "./pages/Contacto";
 import KitDigital from "./pages/KitDigital";
 import AdminLogin from "./pages/Admin/Login";
+import AdminDashboard from "./pages/Admin/Dashboard";
+import InitAdmin from "./pages/Admin/InitAdmin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +31,8 @@ const App = () => (
           <Route path="/contacto" element={<Layout><Contacto /></Layout>} />
           <Route path="/kitdigital" element={<Layout><KitDigital /></Layout>} />
           <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/init" element={<InitAdmin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
