@@ -41,6 +41,72 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_submissions: {
+        Row: {
+          created_at: string
+          email: string
+          gdpr_consent_timestamp: string
+          id: string
+          ip_address: string | null
+          message: string
+          name: string
+          processed: boolean | null
+          subject: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          gdpr_consent_timestamp?: string
+          id?: string
+          ip_address?: string | null
+          message: string
+          name: string
+          processed?: boolean | null
+          subject: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          gdpr_consent_timestamp?: string
+          id?: string
+          ip_address?: string | null
+          message?: string
+          name?: string
+          processed?: boolean | null
+          subject?: string
+        }
+        Relationships: []
+      }
+      cookie_consents: {
+        Row: {
+          analytics_consent: boolean | null
+          id: string
+          ip_address: string | null
+          marketing_consent: boolean | null
+          preferences_consent: boolean | null
+          session_id: string
+          timestamp: string
+        }
+        Insert: {
+          analytics_consent?: boolean | null
+          id?: string
+          ip_address?: string | null
+          marketing_consent?: boolean | null
+          preferences_consent?: boolean | null
+          session_id: string
+          timestamp?: string
+        }
+        Update: {
+          analytics_consent?: boolean | null
+          id?: string
+          ip_address?: string | null
+          marketing_consent?: boolean | null
+          preferences_consent?: boolean | null
+          session_id?: string
+          timestamp?: string
+        }
+        Relationships: []
+      }
       media_articles: {
         Row: {
           created_at: string | null
@@ -77,6 +143,39 @@ export type Database = {
           title?: string
           updated_at?: string | null
           updated_by?: string | null
+        }
+        Relationships: []
+      }
+      newsletter_subscriptions: {
+        Row: {
+          confirmation_token: string | null
+          confirmed: boolean | null
+          consent_timestamp: string
+          created_at: string
+          email: string
+          id: string
+          ip_address: string | null
+          updated_at: string
+        }
+        Insert: {
+          confirmation_token?: string | null
+          confirmed?: boolean | null
+          consent_timestamp?: string
+          created_at?: string
+          email: string
+          id?: string
+          ip_address?: string | null
+          updated_at?: string
+        }
+        Update: {
+          confirmation_token?: string | null
+          confirmed?: boolean | null
+          consent_timestamp?: string
+          created_at?: string
+          email?: string
+          id?: string
+          ip_address?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
