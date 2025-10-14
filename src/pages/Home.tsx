@@ -58,6 +58,8 @@ export default function Home() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
+          role="img"
+          aria-label="Fundo abstracto com halo laranja"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
         </div>

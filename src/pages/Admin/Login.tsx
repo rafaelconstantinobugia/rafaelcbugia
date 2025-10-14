@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -55,7 +56,13 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6">
+    <>
+      <SEO
+        title="Admin Login — Rafael Bugia"
+        description="Área administrativa"
+        noindex={true}
+      />
+      <div className="min-h-screen flex items-center justify-center px-6">
       <Card className="w-full max-w-md p-8">
         <h1 className="text-2xl font-bold text-center mb-8">Admin Login</h1>
         <form onSubmit={handleLogin} className="space-y-4">
@@ -79,5 +86,6 @@ export default function AdminLogin() {
         </form>
       </Card>
     </div>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
@@ -67,7 +68,13 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <SEO
+        title="Dashboard Admin — Rafael Bugia"
+        description="Painel administrativo"
+        noindex={true}
+      />
+      <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">Dashboard Admin</h1>
@@ -119,5 +126,6 @@ export default function AdminDashboard() {
         </Tabs>
       </div>
     </div>
+    </>
   );
 }
