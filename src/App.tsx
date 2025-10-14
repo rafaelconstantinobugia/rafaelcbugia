@@ -3,8 +3,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import { Layout } from "./components/Layout/Layout";
 import { CookieBanner } from "./components/CookieBanner";
+import { initGA } from "./lib/analytics";
 import Home from "./pages/Home";
 import Bio from "./pages/Bio";
 import Projectos from "./pages/Projectos";
@@ -21,31 +23,45 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <CookieBanner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout><Home /></Layout>} />
-          <Route path="/bio" element={<Layout><Bio /></Layout>} />
-          <Route path="/projectos" element={<Layout><Projectos /></Layout>} />
-          <Route path="/media" element={<Layout><Media /></Layout>} />
-          <Route path="/contacto" element={<Layout><Contacto /></Layout>} />
-          <Route path="/kitdigital" element={<Layout><KitDigital /></Layout>} />
-          <Route path="/politica-privacidade" element={<Layout><PoliticaPrivacidade /></Layout>} />
-          <Route path="/termos-condicoes" element={<Layout><TermosCondicoes /></Layout>} />
-          <Route path="/politica-cookies" element={<Layout><PoliticaCookies /></Layout>} />
-          <Route path="/aviso-legal" element={<Layout><AvisoLegal /></Layout>} />
-          <Route path="/admin" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  useEffect(() => {
+    // Initialize GA4 if user has given consent
+    const consent = localStorage.getItem('cookie-consent');
+    if (consent) {
+      const consentData = JSON.parse(consent);
+      if (consentData.analytics) {
+        // Replace with your GA4 Measurement ID
+        initGA('G-XXXXXXXXXX');
+      }
+    }
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <CookieBanner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout><Home /></Layout>} />
+            <Route path="/bio" element={<Layout><Bio /></Layout>} />
+            <Route path="/projectos" element={<Layout><Projectos /></Layout>} />
+            <Route path="/media" element={<Layout><Media /></Layout>} />
+            <Route path="/contacto" element={<Layout><Contacto /></Layout>} />
+            <Route path="/kitdigital" element={<Layout><KitDigital /></Layout>} />
+            <Route path="/politica-privacidade" element={<Layout><PoliticaPrivacidade /></Layout>} />
+            <Route path="/termos-condicoes" element={<Layout><TermosCondicoes /></Layout>} />
+            <Route path="/politica-cookies" element={<Layout><PoliticaCookies /></Layout>} />
+            <Route path="/aviso-legal" element={<Layout><AvisoLegal /></Layout>} />
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
