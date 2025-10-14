@@ -1,6 +1,8 @@
 // Google Analytics 4 Helper
 // Only fires events after user consent
 
+import type { Locale } from './i18n';
+
 interface GAEvent {
   event: string;
   [key: string]: any;
@@ -39,7 +41,16 @@ export const trackEvent = (eventName: string, params?: Record<string, any>) => {
   const consentData = JSON.parse(consent);
   if (!consentData.analytics) return;
 
-  (window as any).gtag('event', eventName, params);
+  // Get current locale from document
+  const locale = document.documentElement.lang || 'pt-PT';
+
+  // Add language to all events
+  const eventParams = {
+    ...params,
+    page_language: locale,
+  };
+
+  (window as any).gtag('event', eventName, eventParams);
 };
 
 // Predefined event helpers
@@ -55,6 +66,9 @@ export const analytics = {
   
   // Downloads
   pressKitDownload: () => trackEvent('presskit_download'),
+  
+  // Language switching
+  languageChanged: (from: Locale, to: Locale) => trackEvent('language_changed', { from_language: from, to_language: to }),
 };
 
 // TypeScript declarations
