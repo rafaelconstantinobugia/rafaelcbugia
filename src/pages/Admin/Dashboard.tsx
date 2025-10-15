@@ -12,6 +12,7 @@ import TestimonialsManager from "@/components/Admin/TestimonialsManager";
 import SettingsManager from "@/components/Admin/SettingsManager";
 import { ContactsManager } from "@/components/Admin/ContactsManager";
 import { NewsletterManager } from "@/components/Admin/NewsletterManager";
+import PressKitManager from "@/components/Admin/PressKitManager";
 
 export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
@@ -86,10 +87,11 @@ export default function AdminDashboard() {
 
       <div className="max-w-7xl mx-auto px-6 py-8">
         <Tabs defaultValue="bio" className="w-full">
-          <TabsList className="grid w-full grid-cols-7">
+          <TabsList className="grid w-full grid-cols-8">
             <TabsTrigger value="bio">Bio</TabsTrigger>
             <TabsTrigger value="projectos">Projectos</TabsTrigger>
             <TabsTrigger value="media">Media</TabsTrigger>
+            <TabsTrigger value="presskit">Press Kit</TabsTrigger>
             <TabsTrigger value="testemunhos">Testemunhos</TabsTrigger>
             <TabsTrigger value="contactos">Contactos</TabsTrigger>
             <TabsTrigger value="newsletter">Newsletter</TabsTrigger>
@@ -106,6 +108,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="media" className="mt-6">
             <MediaManager />
+          </TabsContent>
+
+          <TabsContent value="presskit" className="mt-6">
+            <PressKitManager />
           </TabsContent>
 
           <TabsContent value="testemunhos" className="mt-6">

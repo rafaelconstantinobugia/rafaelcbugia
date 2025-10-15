@@ -4,12 +4,15 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 import { analytics } from "@/lib/analytics";
-import { ExternalLink, Download } from "lucide-react";
+import { ExternalLink, Download, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { pt } from "date-fns/locale";
+import { useLocale } from "@/contexts/LocaleContext";
+import { t } from "@/lib/translations";
 
 export default function Media() {
+  const { locale } = useLocale();
   const { data: articles, isLoading } = useQuery({
     queryKey: ["media-articles"],
     queryFn: async () => {
@@ -23,10 +26,33 @@ export default function Media() {
     },
   });
 
+  const { data: pressKitData } = useQuery({
+    queryKey: ["press-kit"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("site_settings")
+        .select("value")
+        .eq("key", "press_kit")
+        .single();
+      
+      if (error) throw error;
+      return data.value as {
+        bio_pt: string;
+        bio_en: string;
+        bio_es: string;
+        download_url: string;
+      };
+    },
+  });
+
+  const pressKitBio = pressKitData 
+    ? (locale === 'en' ? pressKitData.bio_en : locale === 'es' ? pressKitData.bio_es : pressKitData.bio_pt)
+    : "";
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse text-muted-foreground">A carregar...</div>
+        <div className="animate-pulse text-muted-foreground">{t('loading', locale)}</div>
       </div>
     );
   }
@@ -34,19 +60,18 @@ export default function Media() {
   return (
     <>
       <SEO
-        title="Media e Imprensa — Rafael Constantino Bugia"
-        description="Artigos, entrevistas e menções na imprensa sobre Rafael Constantino Bugia e os seus projectos."
-        canonical="https://rafaelcbugia.com/media"
+        title={t('media.title', locale)}
+        description={t('media.description', locale)}
         ogImage="https://rafaelcbugia.com/opengraph/media.png"
       />
       <div className="py-24 px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">Media</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('media.heading', locale)}</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Artigos, entrevistas e menções na imprensa.
+            {t('media.intro', locale)}
           </p>
         </div>
 
@@ -83,7 +108,7 @@ export default function Media() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-sm font-medium text-primary hover:underline"
                 >
-                  Ler artigo
+                  {t('media.read_article', locale)}
                   <ExternalLink className="ml-1 h-3 w-3" />
                 </a>
               </Card>
@@ -98,43 +123,45 @@ export default function Media() {
         {/* Press Kit Section */}
         <div className="max-w-4xl mx-auto">
           <Card className="p-12 bg-card">
-            <h2 className="text-3xl font-bold mb-8 text-center">Press Kit</h2>
+            <h2 className="text-3xl font-bold mb-4 text-center">{t('media.press_kit_title', locale)}</h2>
+            <p className="text-center text-muted-foreground mb-8">{t('media.press_kit_subtitle', locale)}</p>
             
-            <div className="space-y-6 mb-8">
+            <div className="space-y-8">
               <div>
-                <h3 className="font-bold mb-2">Bio oficial</h3>
-                <p className="text-muted-foreground">
-                  Rafael Constantino Bugia é empreendedor e estratega digital na Costa de Prata, Portugal. 
-                  Especializado em criar sistemas digitais práticos para negócios pequenos mas ambiciosos, 
-                  trabalha na intersecção entre hospitalidade, operações e tecnologia.
+                <h3 className="text-lg font-semibold mb-3">{t('media.press_kit_bio_label', locale)}</h3>
+                <p className="text-foreground/90 leading-relaxed">
+                  {pressKitBio || t('media.description', locale)}
                 </p>
               </div>
-              
-              <div>
-                <h3 className="font-bold mb-2">Contacto para imprensa</h3>
-                <p className="text-muted-foreground">
-                  Para entrevistas, citações ou informações adicionais, contactar através de{" "}
-                  <a href="mailto:contacto@rafaelcbugia.com" className="text-primary hover:underline">
-                    contacto@rafaelcbugia.com
-                  </a>
-                </p>
-              </div>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                variant="outline" 
-                size="lg"
+                asChild 
+                size="lg" 
+                className="w-full"
                 onClick={() => analytics.pressKitDownload()}
               >
-                <Download className="mr-2 h-4 w-4" />
-                Download Bio + Foto
+                <a 
+                  href={pressKitData?.download_url || "https://rafaelcbugia.com/press-kit.pdf"} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Download className="mr-2 h-4 w-4" />
+                  {t('media.press_kit_download', locale)}
+                </a>
               </Button>
-              <Button asChild size="lg">
-                <Link to="/contacto">
-                  Contactar para imprensa
-                </Link>
-              </Button>
+
+              <div className="pt-6 border-t border-border">
+                <h3 className="text-lg font-semibold mb-3">{t('media.press_kit_contact_title', locale)}</h3>
+                <p className="text-muted-foreground mb-4">
+                  {t('media.press_kit_contact_desc', locale)}
+                </p>
+                <Button asChild variant="outline">
+                  <Link to={locale === 'en' ? '/en/contact' : locale === 'es' ? '/es/contacto' : '/contacto'}>
+                    <Mail className="mr-2 h-4 w-4" />
+                    {t('media.press_kit_contact_button', locale)}
+                  </Link>
+                </Button>
+              </div>
             </div>
           </Card>
         </div>
