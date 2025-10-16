@@ -491,10 +491,310 @@ export const translations = {
       'en': 'All rights reserved.',
       'es': 'Todos los derechos reservados.',
     },
-    domain_note: {
+    copyright: {
+      'pt-PT': `© ${new Date().getFullYear()} Rafael Constantino Bugia. Todos os direitos reservados.`,
+      'en': `© ${new Date().getFullYear()} Rafael Constantino Bugia. All rights reserved.`,
+      'es': `© ${new Date().getFullYear()} Rafael Constantino Bugia. Todos los derechos reservados.`,
+    },
+    email: {
+      'pt-PT': 'contacto@rafaelcbugia.com',
+      'en': 'contact@rafaelcbugia.com',
+      'es': 'contacto@rafaelcbugia.com',
+    },
+    handle: {
+      'pt-PT': '@rafaelcbugia',
+      'en': '@rafaelcbugia',
+      'es': '@rafaelcbugia',
+    },
+    domainNote: {
       'pt-PT': 'Este site substitui rafaelconstantinobugia.pt',
       'en': 'This site replaces rafaelconstantinobugia.pt',
       'es': 'Este sitio sustituye rafaelconstantinobugia.pt',
+    },
+  },
+  
+  contact: {
+    title: {
+      'pt-PT': 'Contacto',
+      'en': 'Contact',
+      'es': 'Contacto',
+    },
+    subtitle: {
+      'pt-PT': 'Vamos conversar sobre o seu projecto. Respondo normalmente em 24 horas.',
+      'en': "Let's talk about your project. I usually respond within 24 hours.",
+      'es': 'Hablemos de tu proyecto. Normalmente respondo en 24 horas.',
+    },
+    directEmail: {
+      'pt-PT': 'Ou contacte directamente:',
+      'en': 'Or contact directly:',
+      'es': 'O contacta directamente:',
+    },
+    success: {
+      'pt-PT': 'Mensagem enviada com sucesso! Entrarei em contacto em breve.',
+      'en': 'Message sent successfully! I will be in touch soon.',
+      'es': '¡Mensaje enviado con éxito! Me pondré en contacto pronto.',
+    },
+    error: {
+      'pt-PT': 'Erro ao enviar mensagem. Tente novamente ou use o email directo.',
+      'en': 'Error sending message. Please try again or use direct email.',
+      'es': 'Error al enviar mensaje. Inténtalo de nuevo o usa el email directo.',
+    },
+    form: {
+      name: {
+        'pt-PT': 'Nome',
+        'en': 'Name',
+        'es': 'Nombre',
+      },
+      namePlaceholder: {
+        'pt-PT': 'O seu nome',
+        'en': 'Your name',
+        'es': 'Tu nombre',
+      },
+      email: {
+        'pt-PT': 'Email',
+        'en': 'Email',
+        'es': 'Email',
+      },
+      emailPlaceholder: {
+        'pt-PT': 'seu@email.com',
+        'en': 'your@email.com',
+        'es': 'tu@email.com',
+      },
+      subject: {
+        'pt-PT': 'Assunto',
+        'en': 'Subject',
+        'es': 'Asunto',
+      },
+      subjectPlaceholder: {
+        'pt-PT': 'Como posso ajudar?',
+        'en': 'How can I help?',
+        'es': '¿Cómo puedo ayudar?',
+      },
+      message: {
+        'pt-PT': 'Mensagem',
+        'en': 'Message',
+        'es': 'Mensaje',
+      },
+      messagePlaceholder: {
+        'pt-PT': 'Conte-me sobre o seu projecto...',
+        'en': 'Tell me about your project...',
+        'es': 'Cuéntame sobre tu proyecto...',
+      },
+      gdprConsent: {
+        'pt-PT': 'Concordo que os meus dados sejam utilizados para responder ao meu pedido, de acordo com a',
+        'en': 'I agree that my data will be used to respond to my request, in accordance with the',
+        'es': 'Acepto que mis datos se utilicen para responder a mi solicitud, de acuerdo con la',
+      },
+      gdprLink: {
+        'pt-PT': 'política de privacidade',
+        'en': 'privacy policy',
+        'es': 'política de privacidad',
+      },
+      gdprRights: {
+        'pt-PT': 'Posso exercer os meus direitos (acesso, retificação, eliminação) a qualquer momento.',
+        'en': 'I can exercise my rights (access, rectification, deletion) at any time.',
+        'es': 'Puedo ejercer mis derechos (acceso, rectificación, eliminación) en cualquier momento.',
+      },
+      submit: {
+        'pt-PT': 'Enviar mensagem',
+        'en': 'Send message',
+        'es': 'Enviar mensaje',
+      },
+      submitting: {
+        'pt-PT': 'A enviar...',
+        'en': 'Sending...',
+        'es': 'Enviando...',
+      },
+    },
+  },
+
+  newsletter: {
+    namePlaceholder: {
+    'pt-PT': 'Política de Privacidade',
+    'en': 'Privacy Policy',
+    'es': 'Política de Privacidad',
+  },
+  'footer.legal.terms': {
+    'pt-PT': 'Termos e Condições',
+    'en': 'Terms and Conditions',
+    'es': 'Términos y Condiciones',
+  },
+  'footer.legal.cookies': {
+    'pt-PT': 'Política de Cookies',
+    'en': 'Cookie Policy',
+    'es': 'Política de Cookies',
+  },
+  'footer.legal.notice': {
+    'pt-PT': 'Aviso Legal',
+    'en': 'Legal Notice',
+    'es': 'Aviso Legal',
+  },
+  'footer.legal.manageCookies': {
+    'pt-PT': 'Gerir Cookies',
+    'en': 'Manage Cookies',
+    'es': 'Gestionar Cookies',
+  },
+
+  // Contact Page
+  'contact.title': {
+    'pt-PT': 'Contacto',
+    'en': 'Contact',
+    'es': 'Contacto',
+  },
+  'contact.subtitle': {
+    'pt-PT': 'Vamos conversar sobre o seu projecto. Respondo normalmente em 24 horas.',
+    'en': "Let's talk about your project. I usually respond within 24 hours.",
+    'es': 'Hablemos de tu proyecto. Normalmente respondo en 24 horas.',
+  },
+  'contact.form.name': {
+    'pt-PT': 'Nome',
+    'en': 'Name',
+    'es': 'Nombre',
+  },
+  'contact.form.namePlaceholder': {
+    'pt-PT': 'O seu nome',
+    'en': 'Your name',
+    'es': 'Tu nombre',
+  },
+  'contact.form.email': {
+    'pt-PT': 'Email',
+    'en': 'Email',
+    'es': 'Email',
+  },
+  'contact.form.emailPlaceholder': {
+    'pt-PT': 'seu@email.com',
+    'en': 'your@email.com',
+    'es': 'tu@email.com',
+  },
+  'contact.form.subject': {
+    'pt-PT': 'Assunto',
+    'en': 'Subject',
+    'es': 'Asunto',
+  },
+  'contact.form.subjectPlaceholder': {
+    'pt-PT': 'Como posso ajudar?',
+    'en': 'How can I help?',
+    'es': '¿Cómo puedo ayudar?',
+  },
+  'contact.form.message': {
+    'pt-PT': 'Mensagem',
+    'en': 'Message',
+    'es': 'Mensaje',
+  },
+  'contact.form.messagePlaceholder': {
+    'pt-PT': 'Conte-me sobre o seu projecto...',
+    'en': 'Tell me about your project...',
+    'es': 'Cuéntame sobre tu proyecto...',
+  },
+  'contact.form.gdprConsent': {
+    'pt-PT': 'Concordo que os meus dados sejam utilizados para responder ao meu pedido, de acordo com a',
+    'en': 'I agree that my data will be used to respond to my request, in accordance with the',
+    'es': 'Acepto que mis datos se utilicen para responder a mi solicitud, de acuerdo con la',
+  },
+  'contact.form.gdprLink': {
+    'pt-PT': 'política de privacidade',
+    'en': 'privacy policy',
+    'es': 'política de privacidad',
+  },
+  'contact.form.gdprRights': {
+    'pt-PT': 'Posso exercer os meus direitos (acesso, retificação, eliminação) a qualquer momento.',
+    'en': 'I can exercise my rights (access, rectification, deletion) at any time.',
+    'es': 'Puedo ejercer mis derechos (acceso, rectificación, eliminación) en cualquier momento.',
+  },
+  'contact.form.submit': {
+    'pt-PT': 'Enviar mensagem',
+    'en': 'Send message',
+    'es': 'Enviar mensaje',
+  },
+  'contact.form.submitting': {
+    'pt-PT': 'A enviar...',
+    'en': 'Sending...',
+    'es': 'Enviando...',
+  },
+  'contact.directEmail': {
+    'pt-PT': 'Ou contacte directamente:',
+    'en': 'Or contact directly:',
+    'es': 'O contacta directamente:',
+  },
+  'contact.success': {
+    'pt-PT': 'Mensagem enviada com sucesso! Entrarei em contacto em breve.',
+    'en': 'Message sent successfully! I will be in touch soon.',
+    'es': '¡Mensaje enviado con éxito! Me pondré en contacto pronto.',
+  },
+  'contact.error': {
+    'pt-PT': 'Erro ao enviar mensagem. Tente novamente ou use o email directo.',
+    'en': 'Error sending message. Please try again or use direct email.',
+    'es': 'Error al enviar mensaje. Inténtalo de nuevo o usa el email directo.',
+  },
+
+  // Newsletter
+  'newsletter.title': {
+    'pt-PT': 'Junte-se à newsletter',
+    'en': 'Join the newsletter',
+    'es': 'Únete al newsletter',
+  },
+  'newsletter.description': {
+    'pt-PT': 'Receba insights semanais sobre hospitalidade, operações e tecnologia.',
+    'en': 'Receive weekly insights on hospitality, operations and technology.',
+    'es': 'Recibe insights semanales sobre hospitalidad, operaciones y tecnología.',
+  },
+    emailPlaceholder: {
+      'pt-PT': 'Email',
+      'en': 'Email',
+      'es': 'Email',
+    },
+    gdprConsent: {
+      'pt-PT': 'Concordo com a',
+      'en': 'I agree with the',
+      'es': 'Acepto la',
+    },
+    gdprLink: {
+      'pt-PT': 'política de privacidade',
+      'en': 'privacy policy',
+      'es': 'política de privacidad',
+    },
+    gdprText: {
+      'pt-PT': 'e autorizo o tratamento dos meus dados para envio de newsletter. Posso cancelar a qualquer momento.',
+      'en': 'and authorize the processing of my data for newsletter sending. I can cancel at any time.',
+      'es': 'y autorizo el tratamiento de mis datos para el envío de newsletter. Puedo cancelar en cualquier momento.',
+    },
+    submit: {
+      'pt-PT': 'Subscrever',
+      'en': 'Subscribe',
+      'es': 'Suscribirse',
+    },
+    submitting: {
+      'pt-PT': 'A processar...',
+      'en': 'Processing...',
+      'es': 'Procesando...',
+    },
+    success: {
+      'pt-PT': 'Subscrição efectuada! Verifique o seu email para confirmar.',
+      'en': 'Subscription successful! Check your email to confirm.',
+      'es': '¡Suscripción exitosa! Verifica tu email para confirmar.',
+    },
+    errorDuplicate: {
+      'pt-PT': 'Este email já está subscrito à newsletter.',
+      'en': 'This email is already subscribed to the newsletter.',
+      'es': 'Este email ya está suscrito al newsletter.',
+    },
+    errorGeneral: {
+      'pt-PT': 'Erro ao processar subscrição. Tente novamente.',
+      'en': 'Error processing subscription. Please try again.',
+      'es': 'Error al procesar la suscripción. Inténtalo de nuevo.',
+    },
+    errorConsent: {
+      'pt-PT': 'Tem de aceitar a política de privacidade para subscrever.',
+      'en': 'You must accept the privacy policy to subscribe.',
+      'es': 'Debes aceptar la política de privacidad para suscribirte.',
+    },
+  },
+
+  testimonials: {
+    title: {
+      'pt-PT': 'O que dizem sobre mim',
+      'en': 'What they say about me',
+      'es': 'Lo que dicen de mí',
     },
   },
 } as const;

@@ -12,6 +12,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { analytics } from "@/lib/analytics";
 import { SEO } from "@/components/SEO";
 import { Link } from "react-router-dom";
+import { useLocale } from "@/contexts/LocaleContext";
+import { t } from "@/lib/translations";
+import { getLocalizedPath } from "@/lib/i18n";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, "Nome deve ter pelo menos 2 caracteres").max(100, "Nome muito longo"),
@@ -22,6 +25,7 @@ const contactSchema = z.object({
 });
 
 export default function Contacto() {
+  const { locale } = useLocale();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -63,7 +67,7 @@ export default function Contacto() {
       // Track event
       analytics.contactFormSubmitted();
 
-      toast.success("Mensagem enviada com sucesso! Entrarei em contacto em breve.");
+      toast.success(t('contact.success', locale));
       
       // Reset form
       setFormData({
@@ -75,7 +79,7 @@ export default function Contacto() {
       });
     } catch (error) {
       console.error('Contact form error:', error);
-      toast.error("Erro ao enviar mensagem. Tente novamente ou use o email directo.");
+      toast.error(t('contact.error', locale));
     } finally {
       setIsSubmitting(false);
     }
@@ -93,10 +97,10 @@ export default function Contacto() {
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">Contacto</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('contact.title', locale)}</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Vamos conversar sobre o seu projecto. Respondo normalmente em 24 horas.
+            {t('contact.subtitle', locale)}
           </p>
         </div>
 
@@ -105,53 +109,53 @@ export default function Contacto() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <Label htmlFor="name">Nome *</Label>
+                <Label htmlFor="name">{t('contact.form.name', locale)} *</Label>
                 <Input
                   id="name"
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  placeholder="O seu nome"
+                  placeholder={t('contact.form.namePlaceholder', locale)}
                   className="mt-2"
                 />
               </div>
               
               <div>
-                <Label htmlFor="email">Email *</Label>
+                <Label htmlFor="email">{t('contact.form.email', locale)} *</Label>
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  placeholder="seu@email.com"
+                  placeholder={t('contact.form.emailPlaceholder', locale)}
                   className="mt-2"
                 />
               </div>
             </div>
 
             <div>
-              <Label htmlFor="subject">Assunto *</Label>
+              <Label htmlFor="subject">{t('contact.form.subject', locale)} *</Label>
               <Input
                 id="subject"
                 type="text"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 required
-                placeholder="Como posso ajudar?"
+                placeholder={t('contact.form.subjectPlaceholder', locale)}
                 className="mt-2"
               />
             </div>
 
             <div>
-              <Label htmlFor="message">Mensagem *</Label>
+              <Label htmlFor="message">{t('contact.form.message', locale)} *</Label>
               <Textarea
                 id="message"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 required
-                placeholder="Conte-me sobre o seu projecto..."
+                placeholder={t('contact.form.messagePlaceholder', locale)}
                 rows={6}
                 className="mt-2"
               />
@@ -166,12 +170,11 @@ export default function Contacto() {
                 }
               />
               <Label htmlFor="gdpr" className="text-sm leading-relaxed cursor-pointer">
-                Concordo que os meus dados sejam utilizados para responder ao meu pedido, 
-                de acordo com a{" "}
-                <Link to="/politica-privacidade" className="text-primary hover:underline">
-                  política de privacidade
+                {t('contact.form.gdprConsent', locale)}{" "}
+                <Link to={getLocalizedPath('/politica-privacidade', locale)} className="text-primary hover:underline">
+                  {t('contact.form.gdprLink', locale)}
                 </Link>
-                . Posso exercer os meus direitos (acesso, retificação, eliminação) a qualquer momento. *
+                . {t('contact.form.gdprRights', locale)} *
               </Label>
             </div>
 
@@ -181,7 +184,7 @@ export default function Contacto() {
               disabled={isSubmitting}
               className="w-full md:w-auto"
             >
-              {isSubmitting ? "A enviar..." : "Enviar mensagem"}
+              {isSubmitting ? t('contact.form.submitting', locale) : t('contact.form.submit', locale)}
               <Send className="ml-2 h-4 w-4" />
             </Button>
           </form>
@@ -189,13 +192,13 @@ export default function Contacto() {
 
         {/* Direct Email */}
         <div className="text-center">
-          <p className="text-muted-foreground mb-4">Ou contacte directamente:</p>
+          <p className="text-muted-foreground mb-4">{t('contact.directEmail', locale)}</p>
           <a 
-            href="mailto:contacto@rafaelcbugia.com"
+            href={`mailto:${t('footer.email', locale)}`}
             className="inline-flex items-center gap-2 text-lg font-medium text-primary hover:underline"
           >
             <Mail className="h-5 w-5" />
-            contacto@rafaelcbugia.com
+            {t('footer.email', locale)}
           </a>
         </div>
       </div>

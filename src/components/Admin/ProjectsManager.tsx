@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
 import { Plus, Edit, Trash2 } from "lucide-react";
+import { ImageUploader } from "./ImageUploader";
 
 interface Project {
   id?: string;
@@ -139,10 +140,11 @@ export default function ProjectsManager() {
               value={editingProject.external_url}
               onChange={(e) => setEditingProject({ ...editingProject, external_url: e.target.value })}
             />
-            <Input
-              placeholder="URL da Imagem"
-              value={editingProject.image_url}
-              onChange={(e) => setEditingProject({ ...editingProject, image_url: e.target.value })}
+            <ImageUploader
+              folder="projects"
+              currentUrl={editingProject.image_url}
+              onUploadComplete={(url) => setEditingProject({ ...editingProject, image_url: url })}
+              label="Imagem do Projecto"
             />
             <Input
               type="number"

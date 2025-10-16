@@ -5,8 +5,12 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { analytics } from "@/lib/analytics";
 import { Link } from "react-router-dom";
+import { useLocale } from "@/contexts/LocaleContext";
+import { t } from "@/lib/translations";
+import { getLocalizedPath } from "@/lib/i18n";
 
 export function NewsletterForm() {
+  const { locale } = useLocale();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [gdprConsent, setGdprConsent] = useState(false);
@@ -16,7 +20,7 @@ export function NewsletterForm() {
     e.preventDefault();
     
     if (!gdprConsent) {
-      toast.error("Tem de aceitar a política de privacidade para subscrever.");
+      toast.error(t('newsletter.errorConsent', locale));
       return;
     }
 
@@ -33,12 +37,12 @@ export function NewsletterForm() {
 
       if (error) {
         if (error.code === '23505') { // Unique constraint violation
-          toast.error("Este email já está subscrito à newsletter.");
+          toast.error(t('newsletter.errorDuplicate', locale));
         } else {
           throw error;
         }
       } else {
-        toast.success("Subscrição efectuada! Verifique o seu email para confirmar.");
+        toast.success(t('newsletter.success', locale));
         analytics.newsletterSubmitted(email);
         setName("");
         setEmail("");
@@ -46,7 +50,7 @@ export function NewsletterForm() {
       }
     } catch (error) {
       console.error('Newsletter subscription error:', error);
-      toast.error("Erro ao processar subscrição. Tente novamente.");
+      toast.error(t('newsletter.errorGeneral', locale));
     } finally {
       setLoading(false);
     }
@@ -57,7 +61,7 @@ export function NewsletterForm() {
       <div className="flex flex-col sm:flex-row gap-4">
         <input
           type="text"
-          placeholder="Nome"
+          placeholder={t('newsletter.namePlaceholder', locale)}
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="flex-1 px-4 py-3 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary"
@@ -65,7 +69,7 @@ export function NewsletterForm() {
         />
         <input
           type="email"
-          placeholder="Email"
+          placeholder={t('newsletter.emailPlaceholder', locale)}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="flex-1 px-4 py-3 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary"
@@ -81,16 +85,16 @@ export function NewsletterForm() {
           required
         />
         <label htmlFor="newsletter-gdpr" className="text-muted-foreground leading-tight cursor-pointer">
-          Concordo com a{" "}
-          <Link to="/politica-privacidade" className="text-primary hover:underline">
-            política de privacidade
+          {t('newsletter.gdprConsent', locale)}{" "}
+          <Link to={getLocalizedPath('/politica-privacidade', locale)} className="text-primary hover:underline">
+            {t('newsletter.gdprLink', locale)}
           </Link>{" "}
-          e autorizo o tratamento dos meus dados para envio de newsletter. Posso cancelar a qualquer momento.
+          {t('newsletter.gdprText', locale)}
         </label>
       </div>
 
       <Button type="submit" size="lg" className="w-full" disabled={loading}>
-        {loading ? "A processar..." : "Subscrever"}
+        {loading ? t('newsletter.submitting', locale) : t('newsletter.submit', locale)}
       </Button>
     </form>
   );

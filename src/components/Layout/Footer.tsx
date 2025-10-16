@@ -1,7 +1,12 @@
 import { Mail, Twitter, Linkedin, Instagram, Youtube, Cookie } from "lucide-react";
 import { reopenCookieBanner } from "@/components/CookieBanner";
+import { useLocale } from "@/contexts/LocaleContext";
+import { t } from "@/lib/translations";
+import { getLocalizedPath } from "@/lib/i18n";
 
 export const Footer = () => {
+  const { locale } = useLocale();
+  
   return (
     <footer className="border-t border-border bg-card">
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
@@ -9,35 +14,35 @@ export const Footer = () => {
         <div className="mb-8 pb-8 border-b border-border">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-sm">
             <a 
-              href="/politica-privacidade" 
+              href={getLocalizedPath('/politica-privacidade', locale)}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              Política de Privacidade
+              {t('footer.legal.privacy', locale)}
             </a>
             <a 
-              href="/termos-condicoes" 
+              href={getLocalizedPath('/termos-condicoes', locale)}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              Termos e Condições
+              {t('footer.legal.terms', locale)}
             </a>
             <a 
-              href="/politica-cookies" 
+              href={getLocalizedPath('/politica-cookies', locale)}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              Política de Cookies
+              {t('footer.legal.cookies', locale)}
             </a>
             <a 
-              href="/aviso-legal" 
+              href={getLocalizedPath('/aviso-legal', locale)}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              Aviso Legal
+              {t('footer.legal.notice', locale)}
             </a>
             <button
               onClick={reopenCookieBanner}
               className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 text-left"
             >
               <Cookie className="h-3 w-3" />
-              Gerir Cookies
+              {t('footer.legal.manageCookies', locale)}
             </button>
           </div>
         </div>
@@ -45,17 +50,17 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           {/* Copyright */}
           <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Rafael Constantino Bugia. Todos os direitos reservados.
+            {t('footer.copyright', locale)}
           </div>
 
           {/* Email */}
           <div className="flex items-center gap-2 text-sm">
             <Mail className="h-4 w-4 text-muted-foreground" />
             <a 
-              href="mailto:contacto@rafaelcbugia.com" 
+              href={`mailto:${t('footer.email', locale)}`}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              contacto@rafaelcbugia.com
+              {t('footer.email', locale)}
             </a>
           </div>
 
@@ -102,9 +107,9 @@ export const Footer = () => {
 
         {/* Handle & Domain Note */}
         <div className="mt-6 text-center text-xs text-muted-foreground space-y-1">
-          <div>@rafaelcbugia</div>
+          <div>{t('footer.handle', locale)}</div>
           <div className="text-muted-foreground/60">
-            Este site substitui rafaelconstantinobugia.pt
+            {t('footer.domainNote', locale)}
           </div>
         </div>
       </div>

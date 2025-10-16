@@ -4,8 +4,11 @@ import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Quote } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import { useLocale } from "@/contexts/LocaleContext";
+import { t } from "@/lib/translations";
 
 export function TestimonialsSection() {
+  const { locale } = useLocale();
   const { data: testimonials } = useQuery({
     queryKey: ["testimonials"],
     queryFn: async () => {
@@ -27,7 +30,7 @@ export function TestimonialsSection() {
     <section className="py-24 px-6 lg:px-8 bg-muted/30">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">O que dizem sobre mim</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">{t('testimonials.title', locale)}</h2>
           <div className="w-20 h-1 bg-primary mx-auto" />
         </div>
 

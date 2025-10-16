@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
 import { Plus, Edit, Trash2 } from "lucide-react";
+import { ImageUploader } from "./ImageUploader";
 
 interface Testimonial {
   id?: string;
@@ -132,10 +133,11 @@ export default function TestimonialsManager() {
               onChange={(e) => setEditingTestimonial({ ...editingTestimonial, testimonial: e.target.value })}
               rows={4}
             />
-            <Input
-              placeholder="URL da Foto"
-              value={editingTestimonial.photo_url}
-              onChange={(e) => setEditingTestimonial({ ...editingTestimonial, photo_url: e.target.value })}
+            <ImageUploader
+              folder="testimonials"
+              currentUrl={editingTestimonial.photo_url}
+              onUploadComplete={(url) => setEditingTestimonial({ ...editingTestimonial, photo_url: url })}
+              label="Foto do Testemunho"
             />
             <Input
               type="number"

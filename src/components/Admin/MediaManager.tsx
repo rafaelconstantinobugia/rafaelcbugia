@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Plus, Edit, Trash2 } from "lucide-react";
+import { ImageUploader } from "./ImageUploader";
 
 interface MediaArticle {
   id?: string;
@@ -142,10 +143,11 @@ export default function MediaManager() {
               value={editingArticle.external_url}
               onChange={(e) => setEditingArticle({ ...editingArticle, external_url: e.target.value })}
             />
-            <Input
-              placeholder="URL do Thumbnail"
-              value={editingArticle.thumbnail_url}
-              onChange={(e) => setEditingArticle({ ...editingArticle, thumbnail_url: e.target.value })}
+            <ImageUploader
+              folder="media"
+              currentUrl={editingArticle.thumbnail_url}
+              onUploadComplete={(url) => setEditingArticle({ ...editingArticle, thumbnail_url: url })}
+              label="Thumbnail do Artigo"
             />
             <div className="flex gap-2">
               <Button onClick={handleSave} className="flex-1">Guardar</Button>
