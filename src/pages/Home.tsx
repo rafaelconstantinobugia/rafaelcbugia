@@ -10,6 +10,7 @@ import heroImage from "@/assets/hero-abstract.jpg";
 import { useLocale } from "@/contexts/LocaleContext";
 import { t } from "@/lib/translations";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { BookBanner } from "@/components/BookBanner";
 
 export default function Home() {
   const { locale } = useLocale();
@@ -35,6 +36,25 @@ export default function Home() {
       }]
     }
   };
+
+  const bookSchema = {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "IA para a Minha Avó",
+    "author": {
+      "@type": "Person",
+      "name": "Rafael C. Bugia",
+      "@id": "https://rafaelcbugia.com/#person"
+    },
+    "description": "Guia prático e humano sobre como usar ferramentas inteligentes no dia-a-dia sem perder a cabeça.",
+    "isbn": "9798270049614",
+    "inLanguage": "pt-PT",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Independente (Amazon KDP)"
+    },
+    "datePublished": "2025-11"
+  };
   
   return (
     <>
@@ -45,6 +65,7 @@ export default function Home() {
         keywords={['rafael bugia', 'empreendedor', 'estratega digital', 'costa de prata', 'automações', 'funis', 'sistemas digitais']}
       />
       <StructuredData data={webPageSchema} />
+      <StructuredData data={bookSchema} />
       
       <main role="main">
       {/* Hero Section */}
@@ -199,6 +220,9 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <TestimonialsSection />
+
+      {/* Book Pre-reservation Banner */}
+      <BookBanner />
 
       {/* Newsletter Section */}
       <section className="py-24 px-6 lg:px-8 bg-card" aria-labelledby="newsletter-heading">

@@ -64,6 +64,9 @@ export const analytics = {
   newsletterSubmitted: (email: string) => trackEvent('newsletter_submitted', { email_domain: email.split('@')[1] }),
   contactFormSubmitted: () => trackEvent('contact_form_submitted'),
   
+  // Book pre-reservation
+  track: (eventName: string, params?: Record<string, any>) => trackEvent(eventName, params),
+  
   // Downloads
   pressKitDownload: () => trackEvent('presskit_download'),
   

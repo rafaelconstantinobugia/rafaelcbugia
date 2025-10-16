@@ -41,6 +41,30 @@ export type Database = {
         }
         Relationships: []
       }
+      book_prereservations: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          source: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          source?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          source?: string | null
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           created_at: string

@@ -13,6 +13,7 @@ import SettingsManager from "@/components/Admin/SettingsManager";
 import { ContactsManager } from "@/components/Admin/ContactsManager";
 import { NewsletterManager } from "@/components/Admin/NewsletterManager";
 import PressKitManager from "@/components/Admin/PressKitManager";
+import { BookPrereservationsManager } from "@/components/Admin/BookPrereservationsManager";
 
 export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
@@ -87,7 +88,7 @@ export default function AdminDashboard() {
 
       <div className="max-w-7xl mx-auto px-6 py-8">
         <Tabs defaultValue="bio" className="w-full">
-          <TabsList className="grid w-full grid-cols-8">
+          <TabsList className="grid w-full grid-cols-9">
             <TabsTrigger value="bio">Bio</TabsTrigger>
             <TabsTrigger value="projectos">Projectos</TabsTrigger>
             <TabsTrigger value="media">Media</TabsTrigger>
@@ -95,6 +96,7 @@ export default function AdminDashboard() {
             <TabsTrigger value="testemunhos">Testemunhos</TabsTrigger>
             <TabsTrigger value="contactos">Contactos</TabsTrigger>
             <TabsTrigger value="newsletter">Newsletter</TabsTrigger>
+            <TabsTrigger value="livro">Livro</TabsTrigger>
             <TabsTrigger value="definicoes">Definições</TabsTrigger>
           </TabsList>
 
@@ -124,6 +126,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="newsletter" className="mt-6">
             <NewsletterManager />
+          </TabsContent>
+
+          <TabsContent value="livro" className="mt-6">
+            <BookPrereservationsManager />
           </TabsContent>
 
           <TabsContent value="definicoes" className="mt-6">
