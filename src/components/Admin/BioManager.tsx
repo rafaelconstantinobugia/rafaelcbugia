@@ -6,6 +6,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Plus, Trash2 } from "lucide-react";
+import { ImageUploader } from "./ImageUploader";
+import ReactMarkdown from "react-markdown";
 
 interface TimelineItem {
   year: string;
@@ -97,23 +99,33 @@ export default function BioManager() {
       <Card className="p-6">
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium mb-2 block">Texto Introdutório</label>
+            <label className="text-sm font-medium mb-2 block">Texto Introdutório (suporta Markdown)</label>
             <Textarea
               value={introText}
               onChange={(e) => setIntroText(e.target.value)}
-              rows={6}
-              placeholder="Texto de introdução da bio..."
+              rows={10}
+              placeholder="Utilize **negrito**, *itálico*, parágrafos, listas, etc..."
+              className="font-mono text-sm"
             />
+            <div className="mt-2 text-xs text-muted-foreground">
+              Dica: Use Enter para criar parágrafos. Markdown básico é suportado.
+            </div>
+            {introText && (
+              <div className="mt-4 p-4 border border-border rounded-lg bg-muted/20">
+                <div className="text-xs font-medium mb-2 text-muted-foreground">Preview:</div>
+                <div className="prose prose-sm prose-invert max-w-none">
+                  <ReactMarkdown>{introText}</ReactMarkdown>
+                </div>
+              </div>
+            )}
           </div>
 
-          <div>
-            <label className="text-sm font-medium mb-2 block">URL da Imagem</label>
-            <Input
-              value={bioImageUrl}
-              onChange={(e) => setBioImageUrl(e.target.value)}
-              placeholder="https://exemplo.com/imagem.jpg"
-            />
-          </div>
+          <ImageUploader
+            folder="bio"
+            currentUrl={bioImageUrl}
+            onUploadComplete={(url) => setBioImageUrl(url)}
+            label="Imagem da Bio"
+          />
 
           <div>
             <div className="flex justify-between items-center mb-4">

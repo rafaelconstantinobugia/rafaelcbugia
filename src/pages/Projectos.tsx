@@ -3,8 +3,11 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { ExternalLink } from "lucide-react";
+import { useLocale } from "@/contexts/LocaleContext";
+import { t } from "@/lib/translations";
 
 export default function Projectos() {
+  const { locale } = useLocale();
   const { data: projects, isLoading } = useQuery({
     queryKey: ["projectos"],
     queryFn: async () => {
@@ -36,7 +39,7 @@ export default function Projectos() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse text-muted-foreground">A carregar...</div>
+        <div className="animate-pulse text-muted-foreground">{t('projects.loading', locale)}</div>
       </div>
     );
   }
@@ -53,10 +56,10 @@ export default function Projectos() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">Projectos</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('projects.title', locale)}</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Sistemas digitais que resolvem problemas reais. Cada projecto é construído com foco em resultados medíveis.
+            {t('projects.description', locale)}
           </p>
         </div>
 
@@ -91,7 +94,7 @@ export default function Projectos() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-sm font-medium text-primary hover:underline"
                 >
-                  Visitar projecto
+                  {t('projects.visit', locale)}
                   <ExternalLink className="ml-1 h-3 w-3" />
                 </a>
               )}
@@ -102,7 +105,7 @@ export default function Projectos() {
         {/* How I Work Section */}
         <div className="max-w-4xl mx-auto">
           <Card className="p-12 bg-card">
-            <h2 className="text-3xl font-bold mb-8 text-center">Como trabalho</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center">{t('projects.howIWork.title', locale)}</h2>
             <div className="prose prose-lg prose-invert max-w-none">
               <p className="text-lg leading-relaxed text-foreground/90">
                 {howIWorkData?.text || "Trabalho com foco em execução prática e resultados medíveis. Cada projeto começa com uma análise clara do problema, seguida de implementação rápida e iteração baseada em dados reais."}

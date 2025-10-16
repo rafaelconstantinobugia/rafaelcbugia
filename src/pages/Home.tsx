@@ -8,6 +8,7 @@ import { analytics } from "@/lib/analytics";
 import heroImage from "@/assets/hero-abstract.jpg";
 import { useLocale } from "@/contexts/LocaleContext";
 import { t } from "@/lib/translations";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 
 export default function Home() {
   const { locale } = useLocale();
@@ -172,6 +173,9 @@ export default function Home() {
           </Button>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
 
       {/* Newsletter Section */}
       <section className="py-24 px-6 lg:px-8 bg-card">

@@ -5,6 +5,10 @@ import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 import { ArrowRight, Zap, Building, Rocket } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { useLocale } from "@/contexts/LocaleContext";
+import { t } from "@/lib/translations";
+import ReactMarkdown from "react-markdown";
+import { getLocalizedPath } from "@/lib/i18n";
 
 const iconMap: Record<string, any> = {
   Zap,
@@ -13,6 +17,7 @@ const iconMap: Record<string, any> = {
 };
 
 export default function Bio() {
+  const { locale } = useLocale();
   const { data: bioData, isLoading } = useQuery({
     queryKey: ["bio-content"],
     queryFn: async () => {
@@ -53,20 +58,18 @@ export default function Bio() {
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">Quem sou</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('bio.title', locale)}</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-12" />
         </div>
 
         {/* Intro Text */}
         <div className="prose prose-lg prose-invert max-w-none mb-20">
-          <p className="text-lg leading-relaxed text-foreground/90">
-            {bioData?.intro_text}
-          </p>
+          <ReactMarkdown>{bioData?.intro_text || ""}</ReactMarkdown>
         </div>
 
         {/* Timeline */}
         <div className="mb-20">
-          <h2 className="text-3xl font-bold mb-12 text-center">Percurso</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">{t('bio.timeline.title', locale)}</h2>
           
           <div className="space-y-8">
             {timeline.map((item, index) => {
@@ -106,13 +109,13 @@ export default function Bio() {
 
         {/* CTA */}
         <div className="text-center">
-          <h3 className="text-2xl font-bold mb-6">Vamos trabalhar juntos?</h3>
+          <h3 className="text-2xl font-bold mb-6">{t('bio.cta.title', locale)}</h3>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Descubra os projectos que estou a desenvolver e como posso ajudar o seu negócio.
+            {t('bio.cta.description', locale)}
           </p>
           <Button asChild size="lg">
-            <Link to="/projectos">
-              Ver projectos
+            <Link to={getLocalizedPath('/projectos', locale)}>
+              {t('bio.cta.button', locale)}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
