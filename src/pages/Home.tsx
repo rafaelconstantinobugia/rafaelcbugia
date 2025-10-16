@@ -11,9 +11,25 @@ import { useLocale } from "@/contexts/LocaleContext";
 import { t } from "@/lib/translations";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { BookBanner } from "@/components/BookBanner";
+import { BookPrereservationModal } from "@/components/BookPrereservationModal";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const { locale } = useLocale();
+  const [autoModalOpen, setAutoModalOpen] = useState(false);
+
+  useEffect(() => {
+    // Auto-open book modal after 4s on first visit
+    const hasSeenBookModal = localStorage.getItem('hasSeenBookModal');
+    if (!hasSeenBookModal) {
+      const timer = setTimeout(() => {
+        setAutoModalOpen(true);
+        localStorage.setItem('hasSeenBookModal', 'true');
+      }, 4000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, []);
   
   const webPageSchema = {
     "@context": "https://schema.org",
@@ -236,6 +252,11 @@ export default function Home() {
         </div>
       </section>
     </main>
+    
+    <BookPrereservationModal 
+      open={autoModalOpen} 
+      onOpenChange={setAutoModalOpen} 
+    />
     </>
   );
 }

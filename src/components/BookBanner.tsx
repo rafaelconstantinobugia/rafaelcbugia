@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { BookPrereservationModal } from "./BookPrereservationModal";
+import bookCover from "@/assets/livro-ia-capa.png";
 
 export function BookBanner() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -43,18 +44,16 @@ export function BookBanner() {
               </Button>
             </div>
 
-            {/* Right: Book Cover Mockup */}
+            {/* Right: Book Cover */}
             <div className="order-1 md:order-2 flex justify-center">
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/10 rounded-lg blur-3xl group-hover:blur-2xl transition-all" />
-                <div className="relative bg-gradient-to-br from-background via-muted to-background p-8 rounded-lg border-2 border-primary/20 shadow-2xl hover:shadow-primary/20 transition-all">
-                  <div className="aspect-[2/3] w-64 md:w-72 lg:w-80 bg-gradient-to-br from-primary via-primary/80 to-primary/60 rounded-lg flex items-center justify-center shadow-2xl">
-                    <div className="text-center space-y-4 p-6">
-                      <div className="text-6xl">🤖</div>
-                      <h3 className="text-2xl font-bold text-white">IA PARA A<br/>MINHA AVÓ</h3>
-                      <p className="text-sm text-white/80">Rafael C. Bugia</p>
-                    </div>
-                  </div>
+                <div className="relative p-4 rounded-lg">
+                  <img 
+                    src={bookCover} 
+                    alt="IA para a Minha Avó - Capa do Livro"
+                    className="aspect-[2/3] w-64 md:w-72 lg:w-80 rounded-lg shadow-2xl hover:shadow-primary/20 transition-all object-cover"
+                  />
                 </div>
               </div>
             </div>
