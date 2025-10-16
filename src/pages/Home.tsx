@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
 import { analytics } from "@/lib/analytics";
 import heroImage from "@/assets/hero-abstract.jpg";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -12,17 +13,42 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 
 export default function Home() {
   const { locale } = useLocale();
+  
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": t('home.title', locale),
+    "description": t('home.description', locale),
+    "url": "https://rafaelcbugia.com",
+    "inLanguage": locale === 'pt-PT' ? 'pt-PT' : locale === 'en' ? 'en' : 'es',
+    "about": {
+      "@type": "Person",
+      "@id": "https://rafaelcbugia.com/#person"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://rafaelcbugia.com"
+      }]
+    }
+  };
+  
   return (
     <>
       <SEO
         title={t('home.title', locale)}
         description={t('home.description', locale)}
         ogImage="https://rafaelcbugia.com/opengraph/home.png"
+        keywords={['rafael bugia', 'empreendedor', 'estratega digital', 'costa de prata', 'automações', 'funis', 'sistemas digitais']}
       />
+      <StructuredData data={webPageSchema} />
       
-      <div className="relative">
+      <main role="main">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden" aria-labelledby="hero-heading">
         {/* Background Image with Overlay */}
         <div 
           className="absolute inset-0 z-0"
@@ -39,7 +65,7 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">
+          <h1 id="hero-heading" className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">
             Rafael Constantino Bugia
           </h1>
           <p className="text-xl sm:text-2xl text-muted-foreground mb-4 max-w-3xl mx-auto">
@@ -78,9 +104,9 @@ export default function Home() {
       </section>
 
       {/* What I Do Section */}
-      <section className="py-24 px-6 lg:px-8">
+      <section className="py-24 px-6 lg:px-8" aria-labelledby="services-heading">
         <div className="mx-auto max-w-7xl">
-          <h2 className="text-3xl font-bold text-center mb-16">{t('home.what_i_do', locale)}</h2>
+          <h2 id="services-heading" className="text-3xl font-bold text-center mb-16">{t('home.what_i_do', locale)}</h2>
           
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="p-8 hover-lift hover:border-primary/50 transition-all">
@@ -127,9 +153,9 @@ export default function Home() {
       </section>
 
       {/* Proof Points Section */}
-      <section className="py-24 px-6 lg:px-8 bg-card">
+      <section className="py-24 px-6 lg:px-8 bg-card" aria-labelledby="highlights-heading">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold text-center mb-16">{t('home.highlights', locale)}</h2>
+          <h2 id="highlights-heading" className="text-3xl font-bold text-center mb-16">{t('home.highlights', locale)}</h2>
           
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex items-start gap-3">
@@ -178,9 +204,9 @@ export default function Home() {
       <TestimonialsSection />
 
       {/* Newsletter Section */}
-      <section className="py-24 px-6 lg:px-8 bg-card">
+      <section className="py-24 px-6 lg:px-8 bg-card" aria-labelledby="newsletter-heading">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold mb-6">{t('home.newsletter_title', locale)}</h2>
+          <h2 id="newsletter-heading" className="text-3xl font-bold mb-6">{t('home.newsletter_title', locale)}</h2>
           <p className="text-muted-foreground mb-8">
             {t('home.newsletter_desc', locale)}
           </p>
@@ -188,7 +214,7 @@ export default function Home() {
           <NewsletterForm />
         </div>
       </section>
-    </div>
+    </main>
     </>
   );
 }

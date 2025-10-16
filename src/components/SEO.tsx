@@ -10,6 +10,10 @@ interface SEOProps {
   ogImage?: string;
   ogType?: "website" | "article" | "profile";
   noindex?: boolean;
+  keywords?: string[];
+  articlePublishedTime?: string;
+  articleModifiedTime?: string;
+  articleAuthor?: string;
 }
 
 export function SEO({
@@ -19,6 +23,10 @@ export function SEO({
   ogImage = "https://rafaelcbugia.com/opengraph/home.png",
   ogType = "website",
   noindex = false,
+  keywords,
+  articlePublishedTime,
+  articleModifiedTime,
+  articleAuthor,
 }: SEOProps) {
   const { locale } = useLocale();
   const location = useLocation();
@@ -53,6 +61,10 @@ export function SEO({
     // Standard meta tags
     updateMetaTag("description", description);
     updateMetaTag("author", "Rafael Constantino Bugia");
+    
+    if (keywords && keywords.length > 0) {
+      updateMetaTag("keywords", keywords.join(", "));
+    }
 
     // Open Graph
     updateMetaTag("og:title", title, "property");
@@ -60,7 +72,19 @@ export function SEO({
     updateMetaTag("og:type", ogType, "property");
     updateMetaTag("og:url", canonicalUrl, "property");
     updateMetaTag("og:image", ogImage, "property");
-    updateMetaTag("og:locale", locale, "property");
+    updateMetaTag("og:site_name", "Rafael Constantino Bugia", "property");
+    updateMetaTag("og:locale", locale === 'pt-PT' ? 'pt_PT' : locale === 'en' ? 'en_US' : 'es_ES', "property");
+    
+    // Article meta tags
+    if (ogType === "article" && articlePublishedTime) {
+      updateMetaTag("article:published_time", articlePublishedTime, "property");
+    }
+    if (ogType === "article" && articleModifiedTime) {
+      updateMetaTag("article:modified_time", articleModifiedTime, "property");
+    }
+    if (ogType === "article" && articleAuthor) {
+      updateMetaTag("article:author", articleAuthor, "property");
+    }
 
     // Twitter Card
     updateMetaTag("twitter:card", "summary_large_image");
@@ -100,7 +124,7 @@ export function SEO({
         robotsMeta.remove();
       }
     }
-  }, [title, description, canonicalUrl, ogImage, ogType, noindex, locale, alternates]);
+  }, [title, description, canonicalUrl, ogImage, ogType, noindex, locale, alternates, keywords, articlePublishedTime, articleModifiedTime, articleAuthor]);
 
   return null;
 }

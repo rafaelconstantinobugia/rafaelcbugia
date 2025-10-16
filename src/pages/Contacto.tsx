@@ -11,6 +11,8 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { analytics } from "@/lib/analytics";
 import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Link } from "react-router-dom";
 import { useLocale } from "@/contexts/LocaleContext";
 import { t } from "@/lib/translations";
@@ -26,6 +28,15 @@ const contactSchema = z.object({
 
 export default function Contacto() {
   const { locale } = useLocale();
+  
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": t('contact.seo_title', locale),
+    "description": t('contact.description', locale),
+    "url": "https://rafaelcbugia.com/contacto"
+  };
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -92,17 +103,21 @@ export default function Contacto() {
         description={t('contact.description', locale)}
         canonical="https://rafaelcbugia.com/contacto"
         ogImage="https://rafaelcbugia.com/opengraph/contacto.png"
+        keywords={['rafael bugia', 'contacto', 'email', 'formulário']}
       />
-      <div className="py-24 px-6 lg:px-8">
+      <StructuredData data={contactPageSchema} />
+      <main role="main" className="py-24 px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
+        <Breadcrumbs items={[{ label: t('nav.contact', locale) }]} />
+        
         {/* Header */}
-        <div className="text-center mb-20">
+        <header className="text-center mb-20">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('contact.heading', locale)}</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('contact.intro', locale)}
           </p>
-        </div>
+        </header>
 
         {/* Contact Form */}
         <Card className="p-8 md:p-12 mb-12">
@@ -202,7 +217,7 @@ export default function Contacto() {
           </a>
         </div>
       </div>
-    </div>
+    </main>
     </>
   );
 }

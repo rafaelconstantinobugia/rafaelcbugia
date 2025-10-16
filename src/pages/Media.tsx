@@ -3,6 +3,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { analytics } from "@/lib/analytics";
 import { ExternalLink, Download, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -63,41 +65,68 @@ export default function Media() {
         title={t('media.title', locale)}
         description={t('media.description', locale)}
         ogImage="https://rafaelcbugia.com/opengraph/media.png"
+        keywords={['rafael bugia', 'media', 'imprensa', 'artigos', 'press kit']}
       />
-      <div className="py-24 px-6 lg:px-8">
+      <main role="main" className="py-24 px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
+        <Breadcrumbs items={[{ label: t('nav.media', locale) }]} />
+        
         {/* Header */}
-        <div className="text-center mb-20">
+        <header className="text-center mb-20">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('media.heading', locale)}</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('media.intro', locale)}
           </p>
-        </div>
+        </header>
 
         {/* Articles Grid */}
         {articles && articles.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-            {articles.map((article) => (
-              <Card key={article.id} className="p-6 hover-lift hover:border-primary/50 transition-all flex flex-col">
+            {articles.map((article) => {
+              const articleSchema = {
+                "@context": "https://schema.org",
+                "@type": "NewsArticle",
+                "headline": article.title,
+                "datePublished": article.published_date,
+                "author": {
+                  "@type": "Person",
+                  "name": "Rafael Constantino Bugia"
+                },
+                "publisher": {
+                  "@type": "Person",
+                  "name": "Rafael Constantino Bugia"
+                },
+                "image": article.thumbnail_url,
+                "url": article.external_url
+              };
+              
+              return (
+              <>
+                <StructuredData key={`schema-${article.id}`} data={articleSchema} />
+                <Card key={article.id} className="p-6 hover-lift hover:border-primary/50 transition-all flex flex-col" itemScope itemType="https://schema.org/NewsArticle">
                 {article.thumbnail_url && (
                   <div className="mb-6 rounded-lg overflow-hidden bg-muted">
                     <img 
                       src={article.thumbnail_url} 
                       alt={article.title}
                       className="w-full h-48 object-cover"
+                      itemProp="image"
                     />
                   </div>
                 )}
                 
                 <div className="text-xs text-primary font-medium mb-2">
-                  {article.source} • {format(new Date(article.published_date), "d 'de' MMMM, yyyy", { locale: pt })}
+                  <span itemProp="publisher" itemScope itemType="https://schema.org/Organization">
+                    <span itemProp="name">{article.source}</span>
+                  </span> • <time itemProp="datePublished" dateTime={article.published_date}>{format(new Date(article.published_date), "d 'de' MMMM, yyyy", { locale: pt })}</time>
                 </div>
                 
-                <h3 className="text-lg font-bold mb-3">{article.title}</h3>
+                <h3 className="text-lg font-bold mb-3" itemProp="headline">{article.title}</h3>
+                <meta itemProp="author" content="Rafael Constantino Bugia" />
                 
                 {article.excerpt && (
-                  <p className="text-sm text-muted-foreground mb-6 flex-1">
+                  <p className="text-sm text-muted-foreground mb-6 flex-1" itemProp="description">
                     {article.excerpt}
                   </p>
                 )}
@@ -107,12 +136,15 @@ export default function Media() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-sm font-medium text-primary hover:underline"
+                  itemProp="url"
                 >
                   {t('media.read_article', locale)}
                   <ExternalLink className="ml-1 h-3 w-3" />
                 </a>
               </Card>
-            ))}
+              </>
+              );
+            })}
           </div>
         ) : (
           <div className="text-center py-12 mb-24">
@@ -166,7 +198,7 @@ export default function Media() {
           </Card>
         </div>
       </div>
-    </div>
+    </main>
     </>
   );
 }

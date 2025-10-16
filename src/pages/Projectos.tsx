@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ExternalLink } from "lucide-react";
 import { useLocale } from "@/contexts/LocaleContext";
 import { t } from "@/lib/translations";
@@ -51,17 +52,20 @@ export default function Projectos() {
         description={t('projects.description', locale)}
         canonical="https://rafaelcbugia.com/projectos"
         ogImage="https://rafaelcbugia.com/opengraph/projectos.png"
+        keywords={['rafael bugia', 'projetos', 'silver coast sitters', 'método sprint', 'celindasecoretreat']}
       />
-      <div className="py-24 px-6 lg:px-8">
+      <main role="main" className="py-24 px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
+        <Breadcrumbs items={[{ label: t('nav.projects', locale) }]} />
+        
         {/* Header */}
-        <div className="text-center mb-20">
+        <header className="text-center mb-20">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('projects.title', locale)}</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('projects.intro', locale)}
           </p>
-        </div>
+        </header>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
@@ -114,7 +118,7 @@ export default function Projectos() {
           </Card>
         </div>
       </div>
-    </div>
+    </main>
     </>
   );
 }

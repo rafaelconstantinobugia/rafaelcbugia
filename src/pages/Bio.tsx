@@ -3,6 +3,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ArrowRight, Zap, Building, Rocket } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -46,6 +48,20 @@ export default function Bio() {
     icon: string;
   }> || [];
 
+  const profilePageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "@id": "https://rafaelcbugia.com/#person",
+      "name": "Rafael Constantino Bugia",
+      "jobTitle": "Empreendedor e Estratega Digital",
+      "description": bioData?.intro_text || t('bio.description', locale),
+      "image": bioData?.bio_image_url || "https://rafaelcbugia.com/opengraph/bio.png",
+      "url": "https://rafaelcbugia.com"
+    }
+  };
+
   return (
     <>
       <SEO
@@ -53,17 +69,23 @@ export default function Bio() {
         description={t('bio.description', locale)}
         canonical="https://rafaelcbugia.com/bio"
         ogImage="https://rafaelcbugia.com/opengraph/bio.png"
+        ogType="profile"
+        keywords={['rafael bugia', 'biografia', 'empreendedor', 'costa de prata', 'óbidos']}
       />
-      <div className="py-24 px-6 lg:px-8">
-      <div className="mx-auto max-w-4xl">
+      <StructuredData data={profilePageSchema} />
+      <main role="main" className="py-24 px-6 lg:px-8">
+      <article className="mx-auto max-w-4xl" itemScope itemType="https://schema.org/Person">
+        <Breadcrumbs items={[{ label: t('nav.bio', locale) }]} />
+        
         {/* Header */}
-        <div className="text-center mb-20">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('bio.heading', locale)}</h1>
+        <header className="text-center mb-20">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6" itemProp="name">{t('bio.heading', locale)}</h1>
+          <meta itemProp="jobTitle" content="Empreendedor e Estratega Digital" />
           <div className="w-20 h-1 bg-primary mx-auto mb-12" />
-        </div>
+        </header>
 
         {/* Intro Text */}
-        <div className="prose prose-lg prose-invert max-w-none mb-20">
+        <div className="prose prose-lg prose-invert max-w-none mb-20" itemProp="description">
           <ReactMarkdown>{bioData?.intro_text || ""}</ReactMarkdown>
         </div>
 
@@ -103,6 +125,7 @@ export default function Bio() {
               src={bioData.bio_image_url} 
               alt="Rafael Constantino Bugia" 
               className="w-full h-auto object-cover"
+              itemProp="image"
             />
           </div>
         )}
@@ -120,8 +143,8 @@ export default function Bio() {
             </Link>
           </Button>
         </div>
-      </div>
-    </div>
+      </article>
+    </main>
     </>
   );
 }
