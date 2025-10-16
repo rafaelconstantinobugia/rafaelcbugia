@@ -477,40 +477,60 @@ export const translations = {
 
   // Newsletter
   newsletter: {
-    email_placeholder: {
+    namePlaceholder: {
+      'pt-PT': 'Nome',
+      'en': 'Name',
+      'es': 'Nombre',
+    },
+    emailPlaceholder: {
       'pt-PT': 'seu@email.com',
       'en': 'your@email.com',
       'es': 'su@email.com',
     },
-    subscribe: {
+    submit: {
       'pt-PT': 'Subscrever',
       'en': 'Subscribe',
       'es': 'Suscribir',
     },
-    subscribing: {
+    submitting: {
       'pt-PT': 'A subscrever...',
       'en': 'Subscribing...',
       'es': 'Suscribiendo...',
     },
-    gdpr: {
+    gdprConsent: {
       'pt-PT': 'Ao subscrever, aceito a',
       'en': 'By subscribing, I accept the',
       'es': 'Al suscribirme, acepto la',
     },
-    gdpr_link: {
+    gdprLink: {
       'pt-PT': 'política de privacidade',
       'en': 'privacy policy',
       'es': 'política de privacidad',
+    },
+    gdprText: {
+      'pt-PT': 'e autorizo o processamento dos meus dados.',
+      'en': 'and authorize the processing of my data.',
+      'es': 'y autorizo el procesamiento de mis datos.',
+    },
+    errorConsent: {
+      'pt-PT': 'Deve aceitar a política de privacidade',
+      'en': 'You must accept the privacy policy',
+      'es': 'Debe aceptar la política de privacidad',
+    },
+    errorDuplicate: {
+      'pt-PT': 'Este email já está subscrito.',
+      'en': 'This email is already subscribed.',
+      'es': 'Este correo ya está suscrito.',
+    },
+    errorGeneral: {
+      'pt-PT': 'Erro ao subscrever. Tente novamente.',
+      'en': 'Error subscribing. Please try again.',
+      'es': 'Error al suscribirse. Inténtelo de nuevo.',
     },
     success: {
       'pt-PT': 'Subscrição confirmada! Obrigado.',
       'en': 'Subscription confirmed! Thank you.',
       'es': '¡Suscripción confirmada! Gracias.',
-    },
-    error: {
-      'pt-PT': 'Erro ao subscrever. Tente novamente.',
-      'en': 'Error subscribing. Please try again.',
-      'es': 'Error al suscribirse. Inténtelo de nuevo.',
     },
   },
 

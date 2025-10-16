@@ -109,13 +109,13 @@ export default function Bio() {
 
         {/* CTA */}
         <div className="text-center">
-          <h3 className="text-2xl font-bold mb-6">{t('bio.cta.title', locale)}</h3>
+          <h3 className="text-2xl font-bold mb-6">{t('bio.cta_title', locale)}</h3>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            {t('bio.cta.description', locale)}
+            {t('bio.cta_description', locale)}
           </p>
           <Button asChild size="lg">
             <Link to={getLocalizedPath('/projectos', locale)}>
-              {t('bio.cta.button', locale)}
+              {t('bio.cta_button', locale)}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

@@ -17,32 +17,32 @@ export const Footer = () => {
               href={getLocalizedPath('/politica-privacidade', locale)}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              {t('footer.legal.privacy', locale)}
+              {t('footer.privacy', locale)}
             </a>
             <a 
               href={getLocalizedPath('/termos-condicoes', locale)}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              {t('footer.legal.terms', locale)}
+              {t('footer.terms', locale)}
             </a>
             <a 
               href={getLocalizedPath('/politica-cookies', locale)}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              {t('footer.legal.cookies', locale)}
+              {t('footer.cookies', locale)}
             </a>
             <a 
               href={getLocalizedPath('/aviso-legal', locale)}
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              {t('footer.legal.notice', locale)}
+              {t('footer.legal', locale)}
             </a>
             <button
               onClick={reopenCookieBanner}
               className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 text-left"
             >
               <Cookie className="h-3 w-3" />
-              {t('footer.legal.manageCookies', locale)}
+              {t('footer.manage_cookies', locale)}
             </button>
           </div>
         </div>
