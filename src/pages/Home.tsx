@@ -50,16 +50,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden" aria-labelledby="hero-heading">
         {/* Background Image with Overlay */}
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-          role="img"
-          aria-label="Fundo abstracto com halo laranja"
-        >
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={heroImage}
+            alt="Fundo abstracto com halo laranja"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            fetchPriority="high"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
         </div>
 
