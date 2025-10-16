@@ -34,7 +34,7 @@ export default function Bio() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse text-muted-foreground">A carregar...</div>
+        <div className="animate-pulse text-muted-foreground">{t('bio.loading', locale)}</div>
       </div>
     );
   }
@@ -49,8 +49,8 @@ export default function Bio() {
   return (
     <>
       <SEO
-        title="Biografia — Rafael Constantino Bugia"
-        description="Sou o Rafael Constantino Bugia. Trabalho na intersecção entre hospitalidade, operações e tecnologia. Crio sistemas digitais práticos para negócios ambiciosos."
+        title={t('bio.seo_title', locale)}
+        description={t('bio.description', locale)}
         canonical="https://rafaelcbugia.com/bio"
         ogImage="https://rafaelcbugia.com/opengraph/bio.png"
       />
@@ -58,7 +58,7 @@ export default function Bio() {
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('bio.title', locale)}</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('bio.heading', locale)}</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-12" />
         </div>
 
@@ -69,7 +69,7 @@ export default function Bio() {
 
         {/* Timeline */}
         <div className="mb-20">
-          <h2 className="text-3xl font-bold mb-12 text-center">{t('bio.timeline.title', locale)}</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">{t('bio.timeline_title', locale)}</h2>
           
           <div className="space-y-8">
             {timeline.map((item, index) => {

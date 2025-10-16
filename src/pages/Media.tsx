@@ -116,7 +116,7 @@ export default function Media() {
           </div>
         ) : (
           <div className="text-center py-12 mb-24">
-            <p className="text-muted-foreground">Nenhum artigo disponível no momento.</p>
+            <p className="text-muted-foreground">{t('media.no_articles', locale)}</p>
           </div>
         )}
 

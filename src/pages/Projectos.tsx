@@ -47,8 +47,8 @@ export default function Projectos() {
   return (
     <>
       <SEO
-        title="Projectos — Método SPRINT, Silver Coast Sitters, Celinda's"
-        description="Descubra os projectos que estou a desenvolver: Método SPRINT, Silver Coast Sitters, Celinda's Eco Retreat, 1VAU e mais."
+        title={t('projects.seo_title', locale)}
+        description={t('projects.description', locale)}
         canonical="https://rafaelcbugia.com/projectos"
         ogImage="https://rafaelcbugia.com/opengraph/projectos.png"
       />
@@ -59,7 +59,7 @@ export default function Projectos() {
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('projects.title', locale)}</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t('projects.description', locale)}
+            {t('projects.intro', locale)}
           </p>
         </div>
 
@@ -105,10 +105,10 @@ export default function Projectos() {
         {/* How I Work Section */}
         <div className="max-w-4xl mx-auto">
           <Card className="p-12 bg-card">
-            <h2 className="text-3xl font-bold mb-8 text-center">{t('projects.howIWork.title', locale)}</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center">{t('projects.how_i_work_title', locale)}</h2>
             <div className="prose prose-lg prose-invert max-w-none">
               <p className="text-lg leading-relaxed text-foreground/90">
-                {howIWorkData?.text || "Trabalho com foco em execução prática e resultados medíveis. Cada projeto começa com uma análise clara do problema, seguida de implementação rápida e iteração baseada em dados reais."}
+                {howIWorkData?.text || t('projects.how_i_work_default', locale)}
               </p>
             </div>
           </Card>

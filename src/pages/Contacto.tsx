@@ -67,7 +67,7 @@ export default function Contacto() {
       // Track event
       analytics.contactFormSubmitted();
 
-      toast.success(t('contact.success', locale));
+      toast.success(t('contact.form_success', locale));
       
       // Reset form
       setFormData({
@@ -79,7 +79,7 @@ export default function Contacto() {
       });
     } catch (error) {
       console.error('Contact form error:', error);
-      toast.error(t('contact.error', locale));
+      toast.error(t('contact.form_error', locale));
     } finally {
       setIsSubmitting(false);
     }
@@ -88,8 +88,8 @@ export default function Contacto() {
   return (
     <>
       <SEO
-        title="Contacto — Rafael Constantino Bugia"
-        description="Entre em contacto para discutir o seu projecto. Respondo normalmente em 24 horas."
+        title={t('contact.seo_title', locale)}
+        description={t('contact.description', locale)}
         canonical="https://rafaelcbugia.com/contacto"
         ogImage="https://rafaelcbugia.com/opengraph/contacto.png"
       />
@@ -97,10 +97,10 @@ export default function Contacto() {
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('contact.title', locale)}</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">{t('contact.heading', locale)}</h1>
           <div className="w-20 h-1 bg-primary mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t('contact.subtitle', locale)}
+            {t('contact.intro', locale)}
           </p>
         </div>
 
@@ -109,53 +109,53 @@ export default function Contacto() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <Label htmlFor="name">{t('contact.form.name', locale)} *</Label>
+                <Label htmlFor="name">{t('contact.form_name', locale)} *</Label>
                 <Input
                   id="name"
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  placeholder={t('contact.form.namePlaceholder', locale)}
+                  placeholder={t('contact.form_name_placeholder', locale)}
                   className="mt-2"
                 />
               </div>
               
               <div>
-                <Label htmlFor="email">{t('contact.form.email', locale)} *</Label>
+                <Label htmlFor="email">{t('contact.form_email', locale)} *</Label>
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  placeholder={t('contact.form.emailPlaceholder', locale)}
+                  placeholder={t('contact.form_email_placeholder', locale)}
                   className="mt-2"
                 />
               </div>
             </div>
 
             <div>
-              <Label htmlFor="subject">{t('contact.form.subject', locale)} *</Label>
+              <Label htmlFor="subject">{t('contact.form_subject', locale)} *</Label>
               <Input
                 id="subject"
                 type="text"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 required
-                placeholder={t('contact.form.subjectPlaceholder', locale)}
+                placeholder={t('contact.form_subject_placeholder', locale)}
                 className="mt-2"
               />
             </div>
 
             <div>
-              <Label htmlFor="message">{t('contact.form.message', locale)} *</Label>
+              <Label htmlFor="message">{t('contact.form_message', locale)} *</Label>
               <Textarea
                 id="message"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 required
-                placeholder={t('contact.form.messagePlaceholder', locale)}
+                placeholder={t('contact.form_message_placeholder', locale)}
                 rows={6}
                 className="mt-2"
               />
@@ -170,11 +170,11 @@ export default function Contacto() {
                 }
               />
               <Label htmlFor="gdpr" className="text-sm leading-relaxed cursor-pointer">
-                {t('contact.form.gdprConsent', locale)}{" "}
+                {t('contact.form_gdpr', locale)}{" "}
                 <Link to={getLocalizedPath('/politica-privacidade', locale)} className="text-primary hover:underline">
-                  {t('contact.form.gdprLink', locale)}
+                  {t('contact.form_gdpr_link', locale)}
                 </Link>
-                . {t('contact.form.gdprRights', locale)} *
+                {t('contact.form_gdpr_rights', locale)} *
               </Label>
             </div>
 
@@ -184,7 +184,7 @@ export default function Contacto() {
               disabled={isSubmitting}
               className="w-full md:w-auto"
             >
-              {isSubmitting ? t('contact.form.submitting', locale) : t('contact.form.submit', locale)}
+              {isSubmitting ? t('contact.form_submitting', locale) : t('contact.form_submit', locale)}
               <Send className="ml-2 h-4 w-4" />
             </Button>
           </form>
@@ -192,7 +192,7 @@ export default function Contacto() {
 
         {/* Direct Email */}
         <div className="text-center">
-          <p className="text-muted-foreground mb-4">{t('contact.directEmail', locale)}</p>
+          <p className="text-muted-foreground mb-4">{t('contact.direct_email_label', locale)}</p>
           <a 
             href={`mailto:${t('footer.email', locale)}`}
             className="inline-flex items-center gap-2 text-lg font-medium text-primary hover:underline"

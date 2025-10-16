@@ -53,9 +53,9 @@ export const translations = {
   // Home Page
   home: {
     title: {
-      'pt-PT': 'Rafael Constantino Bugia — Empreendedor e Estratega Digital',
-      'en': 'Rafael Constantino Bugia — Entrepreneur and Digital Strategist',
-      'es': 'Rafael Constantino Bugia — Emprendedor y Estratega Digital',
+      'pt-PT': 'Empreendedor e Estratega Digital',
+      'en': 'Entrepreneur and Digital Strategist',
+      'es': 'Emprendedor y Estratega Digital',
     },
     description: {
       'pt-PT': 'Construo sistemas digitais simples que funcionam no mundo real. Empreendedor na Costa de Prata. Método SPRINT, Silver Coast Sitters, Celinda\'s Eco Retreat.',
@@ -187,6 +187,11 @@ export const translations = {
   // Projects Page
   projects: {
     title: {
+      'pt-PT': 'Projectos',
+      'en': 'Projects',
+      'es': 'Proyectos',
+    },
+    seo_title: {
       'pt-PT': 'Projectos — Método SPRINT, Silver Coast Sitters, Celinda\'s',
       'en': 'Projects — SPRINT Method, Silver Coast Sitters, Celinda\'s',
       'es': 'Proyectos — Método SPRINT, Silver Coast Sitters, Celinda\'s',
@@ -221,14 +226,39 @@ export const translations = {
       'en': 'I work with a focus on practical execution and measurable results. Each project starts with a clear problem analysis, followed by rapid implementation and iteration based on real data.',
       'es': 'Trabajo con enfoque en ejecución práctica y resultados medibles. Cada proyecto comienza con un análisis claro del problema, seguido de implementación rápida e iteración basada en datos reales.',
     },
+    loading: {
+      'pt-PT': 'A carregar...',
+      'en': 'Loading...',
+      'es': 'Cargando...',
+    },
+    visit: {
+      'pt-PT': 'Visitar projecto',
+      'en': 'Visit project',
+      'es': 'Visitar proyecto',
+    },
+    how_i_work_title: {
+      'pt-PT': 'Como trabalho',
+      'en': 'How I work',
+      'es': 'Cómo trabajo',
+    },
+    no_projects: {
+      'pt-PT': 'Nenhum projecto disponível no momento.',
+      'en': 'No projects available at the moment.',
+      'es': 'No hay proyectos disponibles en este momento.',
+    },
   },
 
   // Bio Page
   bio: {
     title: {
-      'pt-PT': 'Bio — Rafael Constantino Bugia',
-      'en': 'Bio — Rafael Constantino Bugia',
-      'es': 'Bio — Rafael Constantino Bugia',
+      'pt-PT': 'Bio',
+      'en': 'Bio',
+      'es': 'Bio',
+    },
+    seo_title: {
+      'pt-PT': 'Biografia — Rafael Constantino Bugia',
+      'en': 'Biography — Rafael Constantino Bugia',
+      'es': 'Biografía — Rafael Constantino Bugia',
     },
     description: {
       'pt-PT': 'Percurso de Rafael Constantino Bugia: de farmacêutico a empreendedor digital. Construtor de sistemas práticos na Costa de Prata.',
@@ -240,15 +270,30 @@ export const translations = {
       'en': 'Bio',
       'es': 'Bio',
     },
+    timeline_title: {
+      'pt-PT': 'Percurso',
+      'en': 'Journey',
+      'es': 'Trayectoria',
+    },
     cta_title: {
       'pt-PT': 'Veja os projectos em acção',
       'en': 'See the projects in action',
       'es': 'Vea los proyectos en acción',
     },
+    cta_description: {
+      'pt-PT': 'Conheça os sistemas digitais que estou a desenvolver e os resultados que estão a gerar.',
+      'en': 'Discover the digital systems I\'m building and the results they\'re generating.',
+      'es': 'Conozca los sistemas digitales que estoy desarrollando y los resultados que están generando.',
+    },
     cta_button: {
       'pt-PT': 'Explorar projectos',
       'en': 'Explore projects',
       'es': 'Explorar proyectos',
+    },
+    loading: {
+      'pt-PT': 'A carregar...',
+      'en': 'Loading...',
+      'es': 'Cargando...',
     },
   },
 
@@ -314,11 +359,21 @@ export const translations = {
       'en': 'Contact',
       'es': 'Contactar',
     },
+    no_articles: {
+      'pt-PT': 'Nenhum artigo disponível no momento.',
+      'en': 'No articles available at the moment.',
+      'es': 'No hay artículos disponibles en este momento.',
+    },
   },
 
   // Contact Page
   contact: {
     title: {
+      'pt-PT': 'Contacto',
+      'en': 'Contact',
+      'es': 'Contacto',
+    },
+    seo_title: {
       'pt-PT': 'Contacto — Rafael Constantino Bugia',
       'en': 'Contact — Rafael Constantino Bugia',
       'es': 'Contacto — Rafael Constantino Bugia',
