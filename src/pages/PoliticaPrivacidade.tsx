@@ -47,11 +47,19 @@ export default function PoliticaPrivacidade() {
 
           <section>
             <h2 className="mb-4 text-2xl font-semibold text-foreground">5. Período de Conservação</h2>
+            <p className="mb-4">
+              Os dados pessoais são conservados apenas pelo tempo necessário para os fins para os quais foram recolhidos:
+            </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong>Mensagens de contacto:</strong> conservadas durante 2 anos após processamento</li>
-              <li><strong>Newsletter:</strong> até cancelar a subscrição ou solicitação de eliminação</li>
-              <li><strong>Cookies:</strong> de acordo com as definições escolhidas (máximo 12 meses)</li>
+              <li><strong>Formulário de contacto:</strong> 3 anos após a submissão, ou até ser processado e respondido</li>
+              <li><strong>Newsletter:</strong> até cancelar a subscrição, ou 3 anos sem interação</li>
+              <li><strong>Pré-reservas de livro:</strong> 6 meses após o lançamento do livro</li>
+              <li><strong>Consentimentos de cookies:</strong> 13 meses (duração máxima legal)</li>
+              <li><strong>Logs de acesso (IP):</strong> 90 dias para fins de segurança</li>
             </ul>
+            <p className="mt-4">
+              Após estes períodos, os dados são automaticamente eliminados dos nossos sistemas.
+            </p>
           </section>
 
           <section>
@@ -86,7 +94,12 @@ export default function PoliticaPrivacidade() {
               <li><strong>Direito de retirar consentimento:</strong> a qualquer momento, sem comprometer a licitude do tratamento anterior</li>
             </ul>
             <p className="mt-4">
-              Para exercer os seus direitos, contacte-nos através do email: <strong>contacto@rafaelcbugia.com</strong>
+              Para exercer estes direitos, pode utilizar a nossa ferramenta de gestão de dados em{" "}
+              <a href="/gerir-dados" className="text-primary hover:underline">
+                www.rafaelcbugia.com/gerir-dados
+              </a>{" "}
+              ou contactar-nos através de{" "}
+              <strong>contacto@rafaelcbugia.com</strong>
             </p>
           </section>
 

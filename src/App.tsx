@@ -19,6 +19,7 @@ import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import TermosCondicoes from "./pages/TermosCondicoes";
 import PoliticaCookies from "./pages/PoliticaCookies";
 import AvisoLegal from "./pages/AvisoLegal";
+import GerirDados from "./pages/GerirDados";
 import AdminLogin from "./pages/Admin/Login";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import NotFound from "./pages/NotFound";
@@ -88,6 +89,9 @@ const App = () => {
               <Route path="/aviso-legal" element={<Layout><AvisoLegal /></Layout>} />
               <Route path="/en/legal-notice" element={<Layout><AvisoLegal /></Layout>} />
               <Route path="/es/aviso-legal" element={<Layout><AvisoLegal /></Layout>} />
+              
+              {/* GDPR data management */}
+              <Route path="/gerir-dados" element={<Layout><GerirDados /></Layout>} />
               
               {/* Admin (no locale) */}
               <Route path="/admin" element={<AdminLogin />} />

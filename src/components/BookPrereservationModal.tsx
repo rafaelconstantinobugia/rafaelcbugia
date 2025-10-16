@@ -3,9 +3,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { trackEvent } from "@/lib/analytics";
+import { Link } from "react-router-dom";
 
 interface BookPrereservationModalProps {
   open: boolean;
@@ -15,6 +17,7 @@ interface BookPrereservationModalProps {
 export function BookPrereservationModal({ open, onOpenChange }: BookPrereservationModalProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [gdprConsent, setGdprConsent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -23,6 +26,11 @@ export function BookPrereservationModal({ open, onOpenChange }: BookPrereservati
     
     if (!name.trim() || !email.trim()) {
       toast.error("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    if (!gdprConsent) {
+      toast.error("Deve aceitar a política de privacidade");
       return;
     }
 
@@ -45,6 +53,7 @@ export function BookPrereservationModal({ open, onOpenChange }: BookPrereservati
       setSubmitted(true);
       setName("");
       setEmail("");
+      setGdprConsent(false);
       
       // Close modal after 3 seconds
       setTimeout(() => {
@@ -107,7 +116,22 @@ export function BookPrereservationModal({ open, onOpenChange }: BookPrereservati
                 />
               </div>
 
-              <Button 
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="prereservation-gdpr"
+                  checked={gdprConsent}
+                  onCheckedChange={(checked) => setGdprConsent(checked as boolean)}
+                />
+                <Label htmlFor="prereservation-gdpr" className="text-sm leading-relaxed cursor-pointer">
+                  Li e aceito a{" "}
+                  <Link to="/politica-privacidade" className="text-primary hover:underline" target="_blank">
+                    Política de Privacidade
+                  </Link>
+                  . Compreendo os meus direitos de acesso, retificação e eliminação dos dados. *
+                </Label>
+              </div>
+
+              <Button
                 type="submit" 
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                 disabled={loading}

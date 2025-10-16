@@ -13,12 +13,18 @@ export const Footer = () => {
         {/* Legal Links Section */}
         <div className="mb-8 pb-8 border-b border-border">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-sm">
-            <a 
-              href={getLocalizedPath('/politica-privacidade', locale)}
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              {t('footer.privacy', locale)}
-            </a>
+              <a 
+                href={getLocalizedPath('/politica-privacidade', locale)}
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                {t('footer.privacy', locale)}
+              </a>
+              <a 
+                href="/gerir-dados"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Gerir Dados
+              </a>
             <a 
               href={getLocalizedPath('/termos-condicoes', locale)}
               className="text-muted-foreground hover:text-primary transition-colors"
