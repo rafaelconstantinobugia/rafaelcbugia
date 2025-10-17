@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SEO } from "@/components/SEO";
 import { StructuredData } from "@/components/StructuredData";
 import { BookPrereservationModal } from "@/components/BookPrereservationModal";
+import { ShareButton } from "@/components/ShareButton";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -79,23 +80,32 @@ export default function Livro() {
                 >
                   Reservar exemplar
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  asChild
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <Link to="/media">
-                    Ver Press Kit
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+                <div className="flex gap-3">
+                  <Button
+                    variant="ghost"
+                    size="lg"
+                    asChild
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    <Link to="/media">
+                      Ver Press Kit
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <ShareButton
+                    url="/livro"
+                    title="IA para a Minha Avó — Rafael C. Bugia"
+                    description="Livro prático e humano sobre como usar IA no dia-a-dia"
+                    size="lg"
+                    variant="outline"
+                  />
+                </div>
               </div>
             </div>
 
             {/* Right: Book Cover */}
             <div className="relative">
-              <div className="relative aspect-[3/4] rounded-lg overflow-hidden glow-orange">
+              <div className="relative aspect-[3/4] rounded-lg overflow-hidden glow-orange shadow-2xl">
                 <img
                   src="/media/livro-ia-para-a-minha-avo-cover.png"
                   alt="Capa do livro IA para a Minha Avó"
@@ -103,19 +113,6 @@ export default function Livro() {
                   loading="eager"
                   width="600"
                   height="800"
-                  onError={(e) => {
-                    // Fallback to placeholder if image doesn't exist
-                    e.currentTarget.style.display = 'none';
-                    const parent = e.currentTarget.parentElement;
-                    if (parent) {
-                      parent.innerHTML = `
-                        <div class="w-full h-full bg-ui flex flex-col items-center justify-center p-8 text-center">
-                          <h2 class="text-3xl font-extrabold text-foreground mb-4">IA para a Minha Avó</h2>
-                          <p class="text-muted-foreground">Como usar ferramentas inteligentes no dia-a-dia sem perder a cabeça</p>
-                        </div>
-                      `;
-                    }
-                  }}
                 />
               </div>
             </div>
