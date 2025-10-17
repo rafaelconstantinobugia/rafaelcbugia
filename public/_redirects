@@ -1,2 +1,5 @@
-# Netlify redirects for SPA + Prerendering
+# Serve static HTML for /livro to crawlers, then let React take over
+/livro    /livro.html    200
+
+# Fallback to SPA for all other routes
 /*    /index.html   200
