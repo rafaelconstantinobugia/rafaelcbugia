@@ -15,6 +15,7 @@ import Projectos from "./pages/Projectos";
 import Media from "./pages/Media";
 import Contacto from "./pages/Contacto";
 import KitDigital from "./pages/KitDigital";
+import Livro from "./pages/Livro";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import TermosCondicoes from "./pages/TermosCondicoes";
 import PoliticaCookies from "./pages/PoliticaCookies";
@@ -56,6 +57,7 @@ const App = () => {
               <Route path="/media" element={<Layout><Media /></Layout>} />
               <Route path="/contacto" element={<Layout><Contacto /></Layout>} />
               <Route path="/kitdigital" element={<Layout><KitDigital /></Layout>} />
+              <Route path="/livro" element={<Layout><Livro /></Layout>} />
               
               {/* English */}
               <Route path="/en" element={<Layout><Home /></Layout>} />

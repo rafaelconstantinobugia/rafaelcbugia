@@ -69,6 +69,15 @@
     <changefreq>monthly</changefreq>
   </url>
   
+  <url>
+    <loc>https://rafaelcbugia.com/livro</loc>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://rafaelcbugia.com/livro"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rafaelcbugia.com/livro"/>
+    <lastmod>2025-10-17</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
   <!-- English -->
   <url>
     <loc>https://rafaelcbugia.com/en</loc>

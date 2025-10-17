@@ -12,7 +12,7 @@ export const Footer = () => {
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         {/* Legal Links Section */}
         <div className="mb-8 pb-8 border-b border-border">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-sm">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-sm">
               <a 
                 href={getLocalizedPath('/politica-privacidade', locale)}
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -54,9 +54,23 @@ export const Footer = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-          {/* Copyright */}
-          <div className="text-sm text-muted-foreground">
-            {t('footer.copyright', locale)}
+          {/* Quick Links */}
+          <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm">
+            <a href="/bio" className="text-muted-foreground hover:text-primary transition-colors">
+              {t('footer.bio', locale)}
+            </a>
+            <a href={getLocalizedPath('/projects', locale)} className="text-muted-foreground hover:text-primary transition-colors">
+              {t('footer.projects', locale)}
+            </a>
+            <a href="/media" className="text-muted-foreground hover:text-primary transition-colors">
+              {t('footer.media', locale)}
+            </a>
+            <a href="/livro" className="text-muted-foreground hover:text-primary transition-colors">
+              Livro
+            </a>
+            <a href={getLocalizedPath('/contact', locale)} className="text-muted-foreground hover:text-primary transition-colors">
+              {t('footer.contact', locale)}
+            </a>
           </div>
 
           {/* Email */}
