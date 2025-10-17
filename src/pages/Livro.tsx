@@ -52,7 +52,7 @@ export default function Livro() {
         title="IA para a Minha Avó — Livro de Rafael C. Bugia"
         description="Guia prático e humano sobre como usar IA no dia-a-dia. Pré-reserve o novo livro de Rafael C. Bugia."
         canonical="https://rafaelcbugia.com/livro"
-        ogImage="https://rafaelcbugia.com/media/livro-ia-para-a-minha-avo-cover-og.png"
+        ogImage="https://rafaelcbugia.com/media/livro-ia-para-a-minha-avo-og.png"
         ogType="book"
         keywords={["IA para a Minha Avó", "Rafael C. Bugia", "inteligência artificial", "livro IA", "guia prático IA", "IA português"]}
       />
