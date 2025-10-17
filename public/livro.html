@@ -58,13 +58,16 @@
   
   <!-- Redirect to React SPA for browsers (not crawlers) -->
   <script>
-    // Check if user agent is a crawler/bot
-    const isCrawler = /bot|crawler|spider|crawling|facebook|twitter|linkedin|whatsapp|telegram/i.test(navigator.userAgent);
+    // Enhanced crawler detection for social media platforms
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isCrawler = /bot|crawler|spider|crawling|facebook|twitter|linkedin|whatsapp|telegram|facebot|facebookexternalhit|twitterbot|linkedinbot|slackbot|discordbot|skypebot|pinterest|reddit|vkshare|tumblr/i.test(userAgent);
     
     // Only redirect if not a crawler and not already redirected
     if (!isCrawler && !window.location.search.includes('static=true')) {
-      // Redirect to React app
-      window.location.replace('/livro?from=static');
+      // Small delay to ensure crawlers can read the page
+      setTimeout(function() {
+        window.location.replace('/livro?from=static');
+      }, 100);
     }
   </script>
   
