@@ -8,7 +8,7 @@ interface SEOProps {
   description: string;
   canonical?: string;
   ogImage?: string;
-  ogType?: "website" | "article" | "profile";
+  ogType?: "website" | "article" | "profile" | "book";
   noindex?: boolean;
   keywords?: string[];
   articlePublishedTime?: string;

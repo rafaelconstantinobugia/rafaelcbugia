@@ -50,9 +50,11 @@ export default function Livro() {
     <>
       <SEO
         title="IA para a Minha Avó — Livro de Rafael C. Bugia"
-        description="Livro prático e humano sobre como usar IA no dia-a-dia: mensagens, e-mails, consultas, papéis e viagens. Pré-reserve agora."
+        description="Guia prático e humano sobre como usar IA no dia-a-dia. Pré-reserve o novo livro de Rafael C. Bugia."
         canonical="https://rafaelcbugia.com/livro"
         ogImage="https://rafaelcbugia.com/media/livro-ia-para-a-minha-avo-cover-og.png"
+        ogType="book"
+        keywords={["IA para a Minha Avó", "Rafael C. Bugia", "inteligência artificial", "livro IA", "guia prático IA", "IA português"]}
       />
       <StructuredData data={bookSchema} />
 
