@@ -60,24 +60,24 @@ export function ShareButton({
           {size !== "icon" && <span className="ml-2">Partilhar</span>}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-48">
-        <DropdownMenuItem onClick={() => handleShare("facebook")} className="cursor-pointer">
+      <DropdownMenuContent align="end" className="w-48 bg-card border-border z-50">
+        <DropdownMenuItem onClick={() => handleShare("facebook")} className="cursor-pointer hover:bg-accent focus:bg-accent">
           <Facebook className="mr-2 h-4 w-4" />
           Facebook
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleShare("twitter")} className="cursor-pointer">
+        <DropdownMenuItem onClick={() => handleShare("twitter")} className="cursor-pointer hover:bg-accent focus:bg-accent">
           <Twitter className="mr-2 h-4 w-4" />
           X (Twitter)
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleShare("linkedin")} className="cursor-pointer">
+        <DropdownMenuItem onClick={() => handleShare("linkedin")} className="cursor-pointer hover:bg-accent focus:bg-accent">
           <Linkedin className="mr-2 h-4 w-4" />
           LinkedIn
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleShare("whatsapp")} className="cursor-pointer">
+        <DropdownMenuItem onClick={() => handleShare("whatsapp")} className="cursor-pointer hover:bg-accent focus:bg-accent">
           <MessageCircle className="mr-2 h-4 w-4" />
           WhatsApp
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleShare("copy")} className="cursor-pointer">
+        <DropdownMenuItem onClick={() => handleShare("copy")} className="cursor-pointer hover:bg-accent focus:bg-accent">
           {copied ? (
             <>
               <Check className="mr-2 h-4 w-4 text-primary" />

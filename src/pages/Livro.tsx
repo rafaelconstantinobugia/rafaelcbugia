@@ -80,26 +80,24 @@ export default function Livro() {
                 >
                   Reservar exemplar
                 </Button>
-                <div className="flex gap-3">
-                  <Button
-                    variant="ghost"
-                    size="lg"
-                    asChild
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    <Link to="/media">
-                      Ver Press Kit
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <ShareButton
-                    url="/livro"
-                    title="IA para a Minha Avó — Rafael C. Bugia"
-                    description="Livro prático e humano sobre como usar IA no dia-a-dia"
-                    size="lg"
-                    variant="outline"
-                  />
-                </div>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  asChild
+                  className="border-border hover:bg-accent"
+                >
+                  <Link to="/media">
+                    Ver Press Kit
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <ShareButton
+                  url="/livro"
+                  title="IA para a Minha Avó — Rafael C. Bugia"
+                  description="Livro prático e humano sobre como usar IA no dia-a-dia"
+                  size="lg"
+                  variant="secondary"
+                />
               </div>
             </div>
 
