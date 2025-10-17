@@ -71,31 +71,33 @@ export default function Livro() {
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                 Guia humano e prático: mensagens, e-mails, consultas, papéis e viagens. Primeiro segurança, depois prática.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button
-                  size="lg"
-                  onClick={() => handleCTAClick("hero")}
-                  aria-label="Reservar exemplar do livro IA para a Minha Avó"
-                  className="text-base"
-                >
-                  Reservar exemplar
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  asChild
-                  className="border-border hover:bg-accent"
-                >
-                  <Link to="/media">
-                    Ver Press Kit
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+              <div className="space-y-4 pt-4">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    size="lg"
+                    onClick={() => handleCTAClick("hero")}
+                    aria-label="Reservar exemplar do livro IA para a Minha Avó"
+                    className="text-base"
+                  >
+                    Reservar exemplar
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    asChild
+                    className="border-border hover:bg-accent"
+                  >
+                    <Link to="/media">
+                      Ver Press Kit
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
                 <ShareButton
                   url="/livro"
                   title="IA para a Minha Avó — Rafael C. Bugia"
                   description="Livro prático e humano sobre como usar IA no dia-a-dia"
-                  size="lg"
+                  size="default"
                   variant="secondary"
                 />
               </div>
