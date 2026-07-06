@@ -77,4 +77,4 @@ Infra-estrutura privada, dados pessoais, credenciais e informação de clientes 
 
 - Website: [rafaelcbugia.com](https://rafaelcbugia.com)
 - CONBULDA: [conbulda.com](https://conbulda.com)
-- LinkedIn: adicionar URL canónico
+- LinkedIn: [Rafael C. Bugia](https://www.linkedin.com/in/rafaelcbugia/)
